@@ -1,0 +1,121 @@
+- predicate: is_a
+  meaning: AはBの下位概念
+  inference_note: 原則として推移的。`is_a`だけを階層化する。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: part_of
+  meaning: AはBの構成要素である
+  inference_note: is_aとは別の関係。通常は性質の継承を自動推論しない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: related_to
+  meaning: 研究上の関連がある
+  inference_note: 因果性や方向を含まない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: distinct_from
+  meaning: 混同すべきでない概念
+  inference_note: 共通点を否定するものではない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_contribute_to
+  meaning: AがBを生じさせる要因になり得る
+  inference_note: 条件付き。必然・十分条件を含意しない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_cause
+  meaning: 文脈を固定した因果的主張
+  inference_note: 介入・反事実などの根拠が望ましい。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_enable
+  meaning: AがBの発生可能性を高める土壌を作る
+  inference_note: 発生自体は保証しない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_manifest_as
+  meaning: AがBという観測現象として現れ得る
+  inference_note: 原因の一意性を意味しない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_hide
+  meaning: AがBの発見を妨げる
+  inference_note: 観測上の関係。Bの発生原因とは異なる。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_hinder
+  meaning: AがBの遂行・改善を妨げる
+  inference_note: 直接の性能劣化と区別。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: can_invalidate
+  meaning: AがBの評価や妥当性を損なう
+  inference_note: 対象指標・検証設計を明記。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: frames
+  meaning: AがBの解釈枠・競合構造となる
+  inference_note: 因果性を含まない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: tradeoff_with
+  meaning: AとBの改善が競合し得る
+  inference_note: 設定依存であり普遍的対立ではない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - CONCEPT
+- predicate: may_mitigate
+  meaning: 手法が条件付きで課題を軽減する可能性がある
+  inference_note: METHOD → CONCEPT の候補。改善保証ではなく、成立条件と実験根拠が必要。
+  subject_types:
+  - METHOD
+  - INTERVENTION
+  object_types:
+  - CONCEPT
+- predicate: may_exacerbate
+  meaning: 手法が条件付きで課題を悪化させる可能性がある
+  inference_note: METHOD → CONCEPT の候補。副作用・トレードオフの可能性を示す。
+  subject_types:
+  - METHOD
+  - INTERVENTION
+  object_types:
+  - CONCEPT
+- predicate: evaluated_with
+  meaning: 課題・概念を所定の評価指標で測定する
+  inference_note: CONCEPT → METRIC。指標だけで原因や現象を一意に特定できるわけではない。
+  subject_types:
+  - CONCEPT
+  object_types:
+  - METRIC
+- predicate: helps_detect
+  meaning: 手法が課題・異常の検知に役立つ可能性がある
+  inference_note: METHOD → CONCEPT。対処する効果と検知する機能を区別する。
+  subject_types:
+  - METHOD
+  object_types:
+  - CONCEPT

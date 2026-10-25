@@ -1,0 +1,93 @@
+# =============================================
+# Python
+# =============================================
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packaging / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing / coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# =============================================
+# Diagrams (PlantUML rendered output)
+# =============================================
+diagrams/*.png
+diagrams/*.svg
+diagrams/*.jpg
+*.puml.jar
+*.plantuml.jar
+plantuml/
+
+# =============================================
+# Data / temporary outputs
+# =============================================
+# Generated data, logs, and local scratch
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+tmp/
+scratch/
+output/
+outputs/
+*.sqlite
+*.sqlite3
+*.db
+checkpoints/
+wandb/
+
+# =============================================
+# Secrets / environment
+# =============================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service_account*.json
+
+# =============================================
+# OS / editor
+# =============================================
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code (個人設定は除外)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# JetBrains / Emacs
+.idea/
+*.iml
+*#
+.#*
+
+# =============================================
+# Jupyter
+# =============================================
+.ipynb_checkpoints/

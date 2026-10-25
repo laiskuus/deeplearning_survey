@@ -1,0 +1,48 @@
+- metric_id: f0f50be8-9128-5d86-9440-eec0ef8790dd
+  name: 訓練・検証性能差（Train/Validation Gap）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 463b799f-ebd1-54b3-b30f-8d52ce5146e2
+  name: クラス別再現率（Per-class Recall）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 0c9e0111-a042-5d79-ab7a-91456fdb1983
+  name: 最悪群精度（Worst-group Accuracy）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: e2265cd9-331e-52ee-be48-61424860e071
+  name: 校正・確率スコア（ECE / Brier / NLL）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 8dce72b7-b8e1-5322-9428-8812e150b4ed
+  name: OOD識別性能（OOD AUROC）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: a06629e8-79c9-5075-8c61-36e19acafbc4
+  name: 分布・潜在表現距離（MMD / Representation Distance）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: fac22c75-b417-5db2-b2dd-2adcbbb6ef03
+  name: 忘却・後方転移（Forgetting / Backward Transfer）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 2df95581-b94d-55c4-8761-123249d4f136
+  name: 速度・メモリ・エネルギー（Latency / VRAM / Energy）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 5466c358-d9bd-5c20-ba7f-d80fff3df645
+  name: 推定区間・試行間ばらつき（Statistical CI / Seed Variance）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 6223d39c-161c-5d2c-b2ab-5a9d4e3b81cd
+  name: リスク・自動判定率曲線（Risk–Coverage Curve）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: 8b4ae1e6-7ee0-5dd5-8374-0dcb21e3584e
+  name: 条件ごとのデータ網羅率（Data Coverage by Context）
+  granularity: metric_family
+  requires_metric_specification: true
+- metric_id: f4baf485-0e73-5c14-a32a-47ed129670be
+  name: 時系列の分布変化量（Temporal Drift Statistic）
+  granularity: metric_family
+  requires_metric_specification: true

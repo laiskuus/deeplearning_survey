@@ -1,0 +1,1304 @@
+- concept_id: bb28879d-99b6-5635-8ee7-65f49efc4a67
+  canonical_name: Objective Misalignment
+  label_ja: 目的不整合
+  kind_code: F
+  definition_ja: 学習目的と本来達成したい目的が一致しない
+  record_status: unreviewed_seed
+- concept_id: 3954d89c-515d-54a9-9381-445aac513237
+  canonical_name: Surrogate Loss Gap
+  label_ja: 代理損失と評価の乖離
+  kind_code: F
+  definition_ja: 損失関数の改善が実用評価に結び付かない
+  record_status: unreviewed_seed
+- concept_id: 6673e957-8481-5574-8be9-6b9329f2883d
+  canonical_name: Cost-sensitive Learning
+  label_ja: 誤判定コストの非対称性
+  kind_code: C
+  definition_ja: 誤りの種類ごとに損失が異なり一律の最適化が不適切
+  record_status: unreviewed_seed
+- concept_id: 9b3b4d8f-4bf3-5a32-84ad-f4569d6bdf5a
+  canonical_name: Multi-objective Conflict
+  label_ja: 複数目的の競合
+  kind_code: C
+  definition_ja: 精度・速度・安全性などの同時最適化が困難
+  record_status: unreviewed_seed
+- concept_id: ddd37933-baf7-51fb-923b-0aedadd06e76
+  canonical_name: Task Ambiguity
+  label_ja: タスク・正解の曖昧さ
+  kind_code: S
+  definition_ja: 正解や判定基準が文脈・専門家により異なる
+  record_status: unreviewed_seed
+- concept_id: 58d68c83-25ee-5c10-a148-2e7270ad6ac6
+  canonical_name: Specification Incompleteness
+  label_ja: 仕様不完全性
+  kind_code: C
+  definition_ja: 望ましい挙動の要求が十分に定義されていない
+  record_status: unreviewed_seed
+- concept_id: 24d97628-2e51-590f-98cf-7aa328e4bf31
+  canonical_name: Delayed Feedback
+  label_ja: 正解フィードバック遅延
+  kind_code: C
+  definition_ja: 結果や報酬の観測が遅れる
+  record_status: unreviewed_seed
+- concept_id: 2a1d4b2e-3fb4-51b8-8eef-1d6dfa91d3cd
+  canonical_name: Underspecification
+  label_ja: 学習パイプラインの過少特定
+  kind_code: F
+  definition_ja: 同等の検証性能でも運用時の振る舞いが大きく異なる予測器が残る
+  record_status: unreviewed_seed
+- concept_id: 7692daea-94b3-58ea-b0cc-f8dc74bdda73
+  canonical_name: Data Scarcity
+  label_ja: データ不足
+  kind_code: C
+  definition_ja: 学習に必要なサンプルが不足する
+  record_status: unreviewed_seed
+- concept_id: a088fc28-b93a-567c-8309-ec02d539d5b6
+  canonical_name: Class Imbalance
+  label_ja: クラス不均衡
+  kind_code: S
+  definition_ja: クラスごとのサンプル頻度が偏る
+  record_status: unreviewed_seed
+- concept_id: 3ac58ed4-94d5-5437-b420-5592cdb6042d
+  canonical_name: Long-tailed Distribution
+  label_ja: ロングテール分布
+  kind_code: S
+  definition_ja: 少数クラスが多数あり頻度分布の裾が長い
+  record_status: unreviewed_seed
+- concept_id: e273f640-f845-52ce-bcc8-939b7a44ef64
+  canonical_name: Rare-event Learning
+  label_ja: 希少事象の学習困難
+  kind_code: F
+  definition_ja: 出現頻度の低い事象の学習・評価が困難
+  record_status: unreviewed_seed
+- concept_id: afc687a6-9290-54f3-b901-99029af0d14e
+  canonical_name: Coverage Gap
+  label_ja: 条件カバレッジ不足
+  kind_code: C
+  definition_ja: 重要な条件・組合せが訓練データにない
+  record_status: unreviewed_seed
+- concept_id: a93b2cd7-6312-5b0f-be8e-e7217550b1ae
+  canonical_name: Sampling Bias
+  label_ja: 標本抽出バイアス
+  kind_code: S
+  definition_ja: 標本抽出により母集団との分布差が生じる
+  record_status: unreviewed_seed
+- concept_id: aec5e0e9-1aeb-512a-8cee-bd501a47ee52
+  canonical_name: Selection Bias
+  label_ja: 選択バイアス
+  kind_code: S
+  definition_ja: 収集・観測対象の選択が分布を歪める
+  record_status: unreviewed_seed
+- concept_id: d6ad44ad-3aba-50fc-96c2-faa8a963e188
+  canonical_name: Measurement Noise
+  label_ja: 測定ノイズ
+  kind_code: S
+  definition_ja: センサー・入力に雑音が含まれる
+  record_status: unreviewed_seed
+- concept_id: a7a7fa49-66f7-5cec-bb0f-db56484986d2
+  canonical_name: Missing Data
+  label_ja: 欠損データ
+  kind_code: S
+  definition_ja: 入力やメタデータの一部が欠落する
+  record_status: unreviewed_seed
+- concept_id: c31d5c2b-91cc-5580-a450-67592cb7ac62
+  canonical_name: Data Heterogeneity
+  label_ja: データ異質性
+  kind_code: S
+  definition_ja: ソースごとに形式・特徴・品質が異なる
+  record_status: unreviewed_seed
+- concept_id: f0346265-15f2-5ab9-a43f-8713a1b580b5
+  canonical_name: Data Duplication
+  label_ja: データ重複
+  kind_code: S
+  definition_ja: 同一・類似サンプルが重複して存在する
+  record_status: unreviewed_seed
+- concept_id: 31181c05-0a91-51cf-84f7-cb913d0e9599
+  canonical_name: Data Contamination
+  label_ja: データ汚染
+  kind_code: S
+  definition_ja: 本来分離されるべき情報などが意図せず混入する
+  record_status: unreviewed_seed
+- concept_id: 40845227-3643-5e68-a6d0-ef88011979bd
+  canonical_name: Synthetic Data Gap
+  label_ja: 合成-実データ差
+  kind_code: S
+  definition_ja: 合成分布と実世界分布に差がある
+  record_status: unreviewed_seed
+- concept_id: e197f928-2121-5c58-9853-d063cb1d4536
+  canonical_name: Spurious Correlation
+  label_ja: 疑似相関
+  kind_code: S
+  definition_ja: 非本質的な特徴と正解が偶然相関する
+  record_status: unreviewed_seed
+- concept_id: bf3511ee-2bb0-5ca3-a6a8-cad745bfd421
+  canonical_name: Label Scarcity
+  label_ja: ラベル不足
+  kind_code: C
+  definition_ja: ラベル付きサンプルが十分に得られない
+  record_status: unreviewed_seed
+- concept_id: a9b3cbf2-54f0-5990-bf70-ff5ec2c3e597
+  canonical_name: Label Noise
+  label_ja: ラベルノイズ
+  kind_code: S
+  definition_ja: 付与された正解ラベルに誤りがある
+  record_status: unreviewed_seed
+- concept_id: fe1d9760-14b8-5f33-9179-52abade3bb26
+  canonical_name: Annotation Disagreement
+  label_ja: アノテータ間不一致
+  kind_code: S
+  definition_ja: 専門家間で判定が一致しない
+  record_status: unreviewed_seed
+- concept_id: 1934e29c-e50c-58e0-8e08-4490e4f7df9a
+  canonical_name: Weak Supervision
+  label_ja: 弱教師信号
+  kind_code: C
+  definition_ja: 間接的・不完全な教師情報しかない
+  record_status: unreviewed_seed
+- concept_id: 48571d81-d53e-5a65-90df-d896867eb95e
+  canonical_name: Partial Label Learning
+  label_ja: 部分ラベル
+  kind_code: C
+  definition_ja: 複数の候補から正解が確定できていない
+  record_status: unreviewed_seed
+- concept_id: aac775e7-4644-50b5-8ef6-0ca33030c84b
+  canonical_name: Incomplete Multi-label
+  label_ja: 不完全マルチラベル
+  kind_code: S
+  definition_ja: 同時に成立するラベルの一部しか付与されない
+  record_status: unreviewed_seed
+- concept_id: a08b3195-e974-5cec-9a2e-cd52415e68af
+  canonical_name: Positive-Unlabeled Learning
+  label_ja: 正例・未ラベル問題
+  kind_code: C
+  definition_ja: 正例と未ラベルデータのみが観測できる
+  record_status: unreviewed_seed
+- concept_id: 3f907e08-88dc-5fae-bd6c-6f77575a472e
+  canonical_name: Hierarchical Labeling
+  label_ja: 階層ラベル構造
+  kind_code: S
+  definition_ja: クラス間に階層・包含関係がある
+  record_status: unreviewed_seed
+- concept_id: 9d5c9674-e154-5b1c-b5d9-69a46d05be6e
+  canonical_name: Label Dependency
+  label_ja: ラベル間依存
+  kind_code: S
+  definition_ja: 複数ラベルに相関・論理・因果依存がある
+  record_status: unreviewed_seed
+- concept_id: 2e044b6c-6e8f-55ce-9973-a81db1301d08
+  canonical_name: Annotation Granularity
+  label_ja: ラベル粒度の差
+  kind_code: S
+  definition_ja: 画像単位・物体単位・画素単位などの単位が違う
+  record_status: unreviewed_seed
+- concept_id: 9842d539-20b8-5727-af38-ef8493340ef5
+  canonical_name: Subjective Ground Truth
+  label_ja: 主観的な正解
+  kind_code: S
+  definition_ja: 評価者や用途によって正解が異なり得る
+  record_status: unreviewed_seed
+- concept_id: 64a5f3cc-ad10-55e1-b353-4e7afae1d741
+  canonical_name: Insufficient Capacity
+  label_ja: モデル容量不足
+  kind_code: C
+  definition_ja: 必要な関数を十分に表現できない
+  record_status: unreviewed_seed
+- concept_id: d5e8a970-afaa-579f-a5bc-aaac25ee76f3
+  canonical_name: Excessive Capacity
+  label_ja: 過剰なモデル自由度
+  kind_code: C
+  definition_ja: 不要なパターンも適合できる自由度がある
+  record_status: unreviewed_seed
+- concept_id: e28f81d4-aa10-51ea-bd19-f9d83af8607c
+  canonical_name: Representation Bias
+  label_ja: 表現・帰納バイアス
+  kind_code: S
+  definition_ja: アーキテクチャの構造的な選好がタスクに不適切
+  record_status: unreviewed_seed
+- concept_id: a8d798ce-a576-5120-8fc0-6910a2b158aa
+  canonical_name: Feature Entanglement
+  label_ja: 潜在因子の混合
+  kind_code: S
+  definition_ja: 分けたい特徴・因子が表現に混ざる
+  record_status: unreviewed_seed
+- concept_id: db025439-6f92-555f-95df-4c23f8c1f167
+  canonical_name: Representation Collapse
+  label_ja: 表現崩壊
+  kind_code: F
+  definition_ja: 異なる入力の表現が区別しにくくなる
+  record_status: unreviewed_seed
+- concept_id: b891fc4b-5752-5eda-a6c1-9f938f28f175
+  canonical_name: Invariance Failure
+  label_ja: 不変性の不足
+  kind_code: F
+  definition_ja: 無視すべき変換に予測が影響される
+  record_status: unreviewed_seed
+- concept_id: d738f2c4-c402-58b6-b6c1-29dfb6fcd38a
+  canonical_name: Equivariance Failure
+  label_ja: 同変性の不足
+  kind_code: F
+  definition_ja: 入力と出力の変換対応が保てない
+  record_status: unreviewed_seed
+- concept_id: 15c9b9bd-fb43-5bb5-9b4c-1de7bd292daf
+  canonical_name: Local–Global Trade-off
+  label_ja: 局所と大域の競合
+  kind_code: C
+  definition_ja: 微細特徴と大局的文脈の両立が難しい
+  record_status: unreviewed_seed
+- concept_id: 3c76f1e4-c81a-50a3-a317-21ef409c6068
+  canonical_name: Resolution Bottleneck
+  label_ja: 解像度ボトルネック
+  kind_code: C
+  definition_ja: 縮小・集約によって重要な細部情報が失われる
+  record_status: unreviewed_seed
+- concept_id: 0518b97b-457b-5ad6-92ed-fd9556539988
+  canonical_name: Compositional Generalization
+  label_ja: 組合せ汎化の不足
+  kind_code: F
+  definition_ja: 既知要素の未知の組合せに対応できない
+  record_status: unreviewed_seed
+- concept_id: 5540a93c-841d-51c1-b96a-a9ef47b4888a
+  canonical_name: Representation Misalignment
+  label_ja: 下流目的と表現の不整合
+  kind_code: F
+  definition_ja: 学習した特徴が下流タスクに適さない
+  record_status: unreviewed_seed
+- concept_id: 9c704d8d-5bf3-5814-ae03-e98ca6c72b68
+  canonical_name: Optimization Difficulty
+  label_ja: 最適化困難
+  kind_code: F
+  definition_ja: 目的関数を十分に低減できない
+  record_status: unreviewed_seed
+- concept_id: 46bf07aa-9675-54d7-91ca-2ef001eed1ea
+  canonical_name: Vanishing / Exploding Gradients
+  label_ja: 勾配消失・爆発
+  kind_code: S
+  definition_ja: 勾配の大きさが極端になり更新が阻害される
+  record_status: unreviewed_seed
+- concept_id: d3eb60b4-2dd3-54ad-9f68-5c0abdf4422a
+  canonical_name: Training Instability
+  label_ja: 学習不安定性
+  kind_code: F
+  definition_ja: 損失やパラメータ更新が不安定になる
+  record_status: unreviewed_seed
+- concept_id: ea108d2f-c78a-548d-af6b-4d4f7e62c10d
+  canonical_name: Initialization Sensitivity
+  label_ja: 初期値依存性
+  kind_code: S
+  definition_ja: パラメータ初期値で結果が大きく変動する
+  record_status: unreviewed_seed
+- concept_id: 6a1f5817-ccd6-57da-9a37-d62f79c0f036
+  canonical_name: Hyperparameter Sensitivity
+  label_ja: ハイパーパラメータ依存性
+  kind_code: S
+  definition_ja: 学習率などの設定差で性能が変わる
+  record_status: unreviewed_seed
+- concept_id: c6292c28-6475-5680-a72a-cb9434795fe4
+  canonical_name: Gradient Conflict
+  label_ja: 勾配競合
+  kind_code: S
+  definition_ja: 異なるタスクの更新方向が衝突する
+  record_status: unreviewed_seed
+- concept_id: 6878e8d6-edc1-50a8-8fb1-7f3605e90805
+  canonical_name: Loss Imbalance
+  label_ja: 損失寄与の偏り
+  kind_code: S
+  definition_ja: 一部のタスク・サンプルが学習を支配する
+  record_status: unreviewed_seed
+- concept_id: ccf66a24-9d22-5522-b1c5-e1cd777dcf32
+  canonical_name: Numerical Instability
+  label_ja: 数値不安定性
+  kind_code: F
+  definition_ja: 低精度演算や丸め誤差により計算が不安定になる
+  record_status: unreviewed_seed
+- concept_id: b77a6bbf-8f0a-51f9-acb3-80b605cb7e38
+  canonical_name: Optimization–Generalization Gap
+  label_ja: 最適化と汎化の乖離
+  kind_code: F
+  definition_ja: 訓練損失改善が未知データ性能につながらない
+  record_status: unreviewed_seed
+- concept_id: b2776029-2492-5c0c-8a94-e17ae963147b
+  canonical_name: Run-to-run Variability
+  label_ja: 試行間変動
+  kind_code: S
+  definition_ja: 同一条件でも乱数・実装で結果がばらつく
+  record_status: unreviewed_seed
+- concept_id: 3880fc26-9f6a-5bac-902b-008d902deda9
+  canonical_name: Overfitting
+  label_ja: 過学習
+  kind_code: F
+  definition_ja: 訓練への適合に対して未知データへの汎化が不足する
+  record_status: unreviewed_seed
+- concept_id: b9ff9279-7991-566d-83dd-7d528ca90211
+  canonical_name: Underfitting
+  label_ja: 学習不足
+  kind_code: F
+  definition_ja: 訓練分布上の構造さえ十分に捉えられない
+  record_status: unreviewed_seed
+- concept_id: eff9c412-6b89-590f-99c4-56bbb75c888e
+  canonical_name: Covariate Shift
+  label_ja: 共変量シフト
+  kind_code: S
+  definition_ja: P(X)が変わりP(Y｜X)が維持される分布変化
+  record_status: unreviewed_seed
+- concept_id: a7f4f350-38cf-5f6c-b9b6-a19434c433c2
+  canonical_name: Label Shift
+  label_ja: ラベルシフト
+  kind_code: S
+  definition_ja: P(Y)が変わりP(X｜Y)が維持される分布変化
+  record_status: unreviewed_seed
+- concept_id: 8acd889d-c6c9-5dd7-85b1-2e6b94eb2afa
+  canonical_name: Concept Shift
+  label_ja: 概念シフト
+  kind_code: S
+  definition_ja: P(Y｜X)が変化する
+  record_status: unreviewed_seed
+- concept_id: e0263513-840a-5b54-8306-3cbdd57d619b
+  canonical_name: Domain Generalization
+  label_ja: ドメイン汎化困難
+  kind_code: F
+  definition_ja: 未観測ドメインで要求性能を維持できない
+  record_status: unreviewed_seed
+- concept_id: aff0a53b-d197-5349-a87a-83c671ac4bc0
+  canonical_name: Domain Adaptation
+  label_ja: ドメイン適応困難
+  kind_code: F
+  definition_ja: 対象ドメインへの適切な適応ができない
+  record_status: unreviewed_seed
+- concept_id: ca8dedf6-a227-58c7-9baa-7928ffb9d4dc
+  canonical_name: Out-of-Distribution Generalization
+  label_ja: 分布外汎化困難
+  kind_code: F
+  definition_ja: 訓練分布外で予測性能が低下する
+  record_status: unreviewed_seed
+- concept_id: 1c6ee4dd-e496-5d78-a499-91cdabf6498c
+  canonical_name: Shortcut Learning
+  label_ja: ショートカット学習
+  kind_code: M
+  definition_ja: 本質とは限らない簡単な手がかりでタスクを解く
+  record_status: unreviewed_seed
+- concept_id: f780d08c-bb54-53bd-b246-9e18786da3e1
+  canonical_name: Spurious Feature Reliance
+  label_ja: 非本質特徴への依存
+  kind_code: M
+  definition_ja: 分布を越えて安定しない特徴に予測が依存する
+  record_status: unreviewed_seed
+- concept_id: 865ffdc3-e75d-52e8-a4e0-0ed826d189f5
+  canonical_name: Few-shot Generalization
+  label_ja: 少数例汎化困難
+  kind_code: F
+  definition_ja: 少数の教師例から新概念を扱えない
+  record_status: unreviewed_seed
+- concept_id: 219b52b3-ff73-5bd7-98ce-238586ccd6d5
+  canonical_name: Zero-shot Transfer
+  label_ja: ゼロショット転移困難
+  kind_code: F
+  definition_ja: タスクの教師例なしで転用できない
+  record_status: unreviewed_seed
+- concept_id: 2d01447a-87f7-566d-910c-ef250df0d39a
+  canonical_name: Worst-group Performance
+  label_ja: 最悪条件群の性能不足
+  kind_code: F
+  definition_ja: 平均性能が良くても特定群で性能が低い
+  record_status: unreviewed_seed
+- concept_id: a0f99d28-8d75-5340-a271-d20abf8352e7
+  canonical_name: Aleatoric Uncertainty
+  label_ja: 偶然的不確実性
+  kind_code: S
+  definition_ja: 観測ノイズ・本質的曖昧さによる不確実性がある
+  record_status: unreviewed_seed
+- concept_id: 08887a94-0dd5-59d0-8ca5-90f9ff67e974
+  canonical_name: Epistemic Uncertainty
+  label_ja: 認識論的不確実性
+  kind_code: S
+  definition_ja: モデルの知識不足に起因する不確実性がある
+  record_status: unreviewed_seed
+- concept_id: ab7834cf-c970-5d3b-bc67-f417e693bcc6
+  canonical_name: Miscalibration
+  label_ja: 確率校正不良
+  kind_code: F
+  definition_ja: 予測確率と実際の正解頻度が対応しない
+  record_status: unreviewed_seed
+- concept_id: c1a27ccc-0e18-5f7c-ae91-af0b8d126469
+  canonical_name: Overconfidence
+  label_ja: 過信
+  kind_code: F
+  definition_ja: 誤予測でも高い信頼度を出す
+  record_status: unreviewed_seed
+- concept_id: 5584f569-93f1-562b-83e5-5e0be4b12dd7
+  canonical_name: OOD Detection
+  label_ja: 分布外検知困難
+  kind_code: F
+  definition_ja: 学習分布と異なる入力を識別できない
+  record_status: unreviewed_seed
+- concept_id: 6ace5b64-d328-5a75-9251-40745dda768a
+  canonical_name: Open-set Recognition
+  label_ja: 未知クラス認識困難
+  kind_code: F
+  definition_ja: 未知クラスを既知として処理する
+  record_status: unreviewed_seed
+- concept_id: d7159ba8-65f6-5ab8-ae99-e70cff594b50
+  canonical_name: Selective Prediction
+  label_ja: 予測保留判断の不足
+  kind_code: F
+  definition_ja: 予測しない方が安全な入力を選別できない
+  record_status: unreviewed_seed
+- concept_id: fdee0d41-4a1c-5449-afd5-dde388ea3a3f
+  canonical_name: Distribution-free Coverage
+  label_ja: 被覆保証の困難
+  kind_code: F
+  definition_ja: 弱い仮定下で予測集合の被覆率を保ちにくい
+  record_status: unreviewed_seed
+- concept_id: 3c36a9ff-ee1c-5e96-b0c0-3db312a4ea41
+  canonical_name: Risk Estimation
+  label_ja: 予測リスク推定の不足
+  kind_code: F
+  definition_ja: 運用下の実際の誤判定リスクを見積もれない
+  record_status: unreviewed_seed
+- concept_id: 51600d19-b084-547e-8970-18bb01e93ad0
+  canonical_name: Data Drift
+  label_ja: データドリフト
+  kind_code: S
+  definition_ja: 入力分布などのデータ特性が時間で変化する
+  record_status: unreviewed_seed
+- concept_id: 705b9be2-ee7c-575e-96bf-952f54a4db7c
+  canonical_name: Concept Drift
+  label_ja: コンセプトドリフト
+  kind_code: S
+  definition_ja: 時間経過で入力と正解の関係が変化する
+  record_status: unreviewed_seed
+- concept_id: c8c3ef10-61ef-51df-9514-bd9adfd6a58c
+  canonical_name: Catastrophic Forgetting
+  label_ja: 破滅的忘却
+  kind_code: F
+  definition_ja: 新しい学習により既存タスク性能が失われる
+  record_status: unreviewed_seed
+- concept_id: b5fe9810-b657-5801-adb4-b466764f7120
+  canonical_name: Stability–Plasticity Dilemma
+  label_ja: 安定性と可塑性のジレンマ
+  kind_code: C
+  definition_ja: 既存知識維持と新知識獲得が競合する
+  record_status: unreviewed_seed
+- concept_id: 110c2b0b-48f3-52bf-a9f0-f4bbaa131981
+  canonical_name: Online Adaptation
+  label_ja: オンライン適応困難
+  kind_code: F
+  definition_ja: 逐次入力に対して安定して適応できない
+  record_status: unreviewed_seed
+- concept_id: 492c393c-32db-5b2c-9760-95c11927d942
+  canonical_name: Test-time Adaptation
+  label_ja: 推論時適応困難
+  kind_code: F
+  definition_ja: 推論時の未ラベルデータを用いた更新が難しい
+  record_status: unreviewed_seed
+- concept_id: 11c127f2-7f73-5d52-9d20-556d3ec91c8d
+  canonical_name: Negative Transfer
+  label_ja: 負の転移
+  kind_code: F
+  definition_ja: 転移・適応で対象性能が低下する
+  record_status: unreviewed_seed
+- concept_id: 17fe1f31-8d40-56a1-b1c6-4e64769a8abd
+  canonical_name: Error Accumulation
+  label_ja: 誤りの累積
+  kind_code: M
+  definition_ja: 誤った擬似ラベルや予測が後続の学習へ伝播する
+  record_status: unreviewed_seed
+- concept_id: ceaf40b6-8e05-5c42-9797-96547e7e00ab
+  canonical_name: Feedback Loop
+  label_ja: 予測-データのフィードバック
+  kind_code: M
+  definition_ja: 予測や介入が将来の観測データに影響する
+  record_status: unreviewed_seed
+- concept_id: 5fa5895a-c2f3-56af-84f0-2101979c9be8
+  canonical_name: Non-stationary Learning
+  label_ja: 非定常学習困難
+  kind_code: F
+  definition_ja: 継続変化する環境下での学習が不安定になる
+  record_status: unreviewed_seed
+- concept_id: caa6540f-3882-5380-a125-b1d5a41dd921
+  canonical_name: Corruption Robustness
+  label_ja: 入力劣化への頑健性不足
+  kind_code: F
+  definition_ja: ノイズ・ぼけ・圧縮等で性能が低下する
+  record_status: unreviewed_seed
+- concept_id: 82cbd62e-869f-5104-bdf9-1b2b85ce759f
+  canonical_name: Perturbation Sensitivity
+  label_ja: 入力摂動感度
+  kind_code: S
+  definition_ja: 小さな入力変化で予測が大きく変わる
+  record_status: unreviewed_seed
+- concept_id: aa4f940e-27ad-5923-9f8f-72f294d82e85
+  canonical_name: Adversarial Examples
+  label_ja: 敵対的入力への脆弱性
+  kind_code: F
+  definition_ja: 意図的な入力摂動で誤予測する
+  record_status: unreviewed_seed
+- concept_id: 7c0414f5-17d7-51ca-b762-2bb51852be07
+  canonical_name: Data Poisoning
+  label_ja: データポイズニングリスク
+  kind_code: R
+  definition_ja: 学習データへの悪意ある混入で挙動が変わる
+  record_status: unreviewed_seed
+- concept_id: 17d4e0b7-0e03-5153-aaeb-57699b8c1b1f
+  canonical_name: Backdoor Attacks
+  label_ja: バックドアリスク
+  kind_code: R
+  definition_ja: トリガーによって意図しない挙動を誘発される
+  record_status: unreviewed_seed
+- concept_id: d71fab7d-d82e-5cad-88ad-01aa4f0fc37a
+  canonical_name: Model Extraction
+  label_ja: モデル抽出リスク
+  kind_code: R
+  definition_ja: 外部からモデルの機能を複製される
+  record_status: unreviewed_seed
+- concept_id: 3d4963b5-dce7-5101-a06c-95ff83d7c4bd
+  canonical_name: Robustness–Accuracy Trade-off
+  label_ja: 頑健性と通常精度の競合
+  kind_code: C
+  definition_ja: 頑健性対策と通常性能の両立が難しい場合がある
+  record_status: unreviewed_seed
+- concept_id: 16f389a4-471e-5dcd-baf2-f367a08965f7
+  canonical_name: Certified Robustness
+  label_ja: 頑健性保証困難
+  kind_code: F
+  definition_ja: 摂動範囲に対する出力の保証が与えにくい
+  record_status: unreviewed_seed
+- concept_id: 49b40b45-364c-5c1c-ad36-866e921cb1db
+  canonical_name: Compound Shift
+  label_ja: 複合分布シフト
+  kind_code: S
+  definition_ja: 複数の環境変化が同時に起こる
+  record_status: unreviewed_seed
+- concept_id: 1e4a702a-5fe4-5d80-bf6d-1c86e85b59f0
+  canonical_name: Data Leakage
+  label_ja: データリーク
+  kind_code: F
+  definition_ja: 学習・評価で利用不能な情報が混入する
+  record_status: unreviewed_seed
+- concept_id: e5ccd958-ab04-579e-a35f-c0bc5d3610e8
+  canonical_name: Benchmark Contamination
+  label_ja: ベンチマーク汚染
+  kind_code: F
+  definition_ja: 評価問題が学習情報に含まれる
+  record_status: unreviewed_seed
+- concept_id: 31dfae5b-20b3-5e20-9f78-008aca8ba63c
+  canonical_name: Benchmark Saturation
+  label_ja: ベンチマーク飽和
+  kind_code: C
+  definition_ja: 指標が上限に近づき性能差を測れない
+  record_status: unreviewed_seed
+- concept_id: d7f0f020-44f4-5672-99c7-8317f0051ddf
+  canonical_name: Metric Misalignment
+  label_ja: 評価指標の不整合
+  kind_code: F
+  definition_ja: 評価指標が実務目的を表さない
+  record_status: unreviewed_seed
+- concept_id: 658e585b-3d55-5dd1-83e6-da47d1984e5e
+  canonical_name: Evaluation Bias
+  label_ja: 評価標本バイアス
+  kind_code: S
+  definition_ja: テスト集合が評価対象を代表しない
+  record_status: unreviewed_seed
+- concept_id: efa2b60c-a6a9-51f3-b301-d2b7f09e26d1
+  canonical_name: Subgroup Blindness
+  label_ja: 部分集団の見落とし
+  kind_code: F
+  definition_ja: 全体平均によって弱い群が隠れる
+  record_status: unreviewed_seed
+- concept_id: f2d1ae41-f6dc-5b1d-b922-68c0d1260e41
+  canonical_name: Statistical Uncertainty
+  label_ja: 推定値の統計的不確実性
+  kind_code: S
+  definition_ja: 有限標本による指標の推定誤差がある
+  record_status: unreviewed_seed
+- concept_id: 4102ec33-1567-5d80-b835-84680f806783
+  canonical_name: Reproducibility
+  label_ja: 再現可能性不足
+  kind_code: F
+  definition_ja: 同一手順で結果を再現できない
+  record_status: unreviewed_seed
+- concept_id: ec2210cb-6190-5055-add4-d6d3716249f6
+  canonical_name: Reproducibility of Comparisons
+  label_ja: 研究比較の再現性不足
+  kind_code: F
+  definition_ja: 条件・予算・実装の不一致で公平な比較が難しい
+  record_status: unreviewed_seed
+- concept_id: 72ffc6ec-9c65-5ccc-a470-11a713b2cb9e
+  canonical_name: Benchmark Overfitting
+  label_ja: ベンチマークへの過適合
+  kind_code: F
+  definition_ja: 公開評価条件に合わせすぎ一般性能を測れない
+  record_status: unreviewed_seed
+- concept_id: 06af2f97-afe2-5b2f-867b-1f34146444bc
+  canonical_name: Real-world Validity
+  label_ja: 実環境妥当性不足
+  kind_code: F
+  definition_ja: 評価環境と実運用で性能が一致しない
+  record_status: unreviewed_seed
+- concept_id: 3a4762a2-ad38-5e35-99c7-d7628942b980
+  canonical_name: Evaluation Cost
+  label_ja: 評価コスト
+  kind_code: C
+  definition_ja: 評価に多大な時間・費用・専門判断が必要
+  record_status: unreviewed_seed
+- concept_id: b35e38d0-b47f-52ea-b517-e399122b92b4
+  canonical_name: Training Compute
+  label_ja: 学習計算コスト
+  kind_code: C
+  definition_ja: 学習に必要な演算資源が大きい
+  record_status: unreviewed_seed
+- concept_id: 5e7f48cc-7f35-50c6-a1a7-e8565dac8f3f
+  canonical_name: Inference Latency
+  label_ja: 推論遅延
+  kind_code: C
+  definition_ja: 意思決定に必要な応答時間を満たせない
+  record_status: unreviewed_seed
+- concept_id: e34f642d-ed84-52b9-8c71-3edc23ccbc5b
+  canonical_name: Memory Footprint
+  label_ja: メモリ消費
+  kind_code: C
+  definition_ja: 重み・活性・状態が多量のメモリを要する
+  record_status: unreviewed_seed
+- concept_id: 8d0bd470-d709-51a8-9b23-337510b9a847
+  canonical_name: Memory Bandwidth
+  label_ja: メモリ帯域制約
+  kind_code: C
+  definition_ja: 転送速度が処理能力を律速する
+  record_status: unreviewed_seed
+- concept_id: ee2b7500-17c8-5f35-b2de-38284cfba39c
+  canonical_name: Communication Bottleneck
+  label_ja: 通信ボトルネック
+  kind_code: C
+  definition_ja: 分散計算時の通信が性能を律速する
+  record_status: unreviewed_seed
+- concept_id: ec814111-bab5-5c90-9183-c8b406426629
+  canonical_name: Energy Efficiency
+  label_ja: エネルギー効率不足
+  kind_code: F
+  definition_ja: 性能当たりのエネルギー消費が大きい
+  record_status: unreviewed_seed
+- concept_id: eb0d371d-0117-5825-855c-42581eb4c304
+  canonical_name: Data Efficiency
+  label_ja: データ効率不足
+  kind_code: F
+  definition_ja: 十分な性能に多量の訓練例を要する
+  record_status: unreviewed_seed
+- concept_id: 5f3ebf7c-35c8-566a-bea1-9118f8b86729
+  canonical_name: Compute-optimal Scaling
+  label_ja: 計算資源配分問題
+  kind_code: C
+  definition_ja: パラメータ・データ・計算予算の最適配分が難しい
+  record_status: unreviewed_seed
+- concept_id: 966a3979-3dfe-5ec1-83ed-fcc69c35b840
+  canonical_name: Quantization Degradation
+  label_ja: 量子化による劣化
+  kind_code: F
+  definition_ja: 低ビット化により精度や安定性が低下する
+  record_status: unreviewed_seed
+- concept_id: ca30505e-9d33-511c-b6fd-dabe87cef154
+  canonical_name: Compression Trade-off
+  label_ja: 圧縮に伴う競合
+  kind_code: C
+  definition_ja: 軽量化・精度・速度が競合する
+  record_status: unreviewed_seed
+- concept_id: bcc385b9-0a82-5a46-9de1-e15d9ae1649b
+  canonical_name: Hardware Portability
+  label_ja: ハードウェア移植性不足
+  kind_code: F
+  definition_ja: 特定演算器への依存で移植が難しい
+  record_status: unreviewed_seed
+- concept_id: 626e71bc-6b12-5963-85cf-454307869eb4
+  canonical_name: Edge Deployment
+  label_ja: エッジ展開困難
+  kind_code: F
+  definition_ja: 端末の電力・メモリ・遅延制約を満たせない
+  record_status: unreviewed_seed
+- concept_id: 0cbdc82b-6055-506e-b77b-654300fcbb68
+  canonical_name: Sustainability
+  label_ja: 環境負荷
+  kind_code: R
+  definition_ja: 学習・推論の資源利用が環境に影響する
+  record_status: unreviewed_seed
+- concept_id: 6f10534c-2461-563d-9e31-f4410b49a3bb
+  canonical_name: Black-box Behavior
+  label_ja: ブラックボックス性
+  kind_code: C
+  definition_ja: 判断根拠や内部計算が理解しにくい
+  record_status: unreviewed_seed
+- concept_id: a07a53cb-2e69-5b27-8623-c9cedb96186c
+  canonical_name: Explanation Faithfulness
+  label_ja: 説明忠実性不足
+  kind_code: F
+  definition_ja: 提示する説明が実際の推論を反映しない
+  record_status: unreviewed_seed
+- concept_id: 050cfddc-92b8-5f1c-99b9-fe8c37f2a61f
+  canonical_name: Explanation Stability
+  label_ja: 説明安定性不足
+  kind_code: F
+  definition_ja: 軽微な入力変化で説明が変わる
+  record_status: unreviewed_seed
+- concept_id: 39e9e222-45d9-569d-9772-3f3895366175
+  canonical_name: Feature Attribution
+  label_ja: 特徴寄与の特定困難
+  kind_code: F
+  definition_ja: 予測に対する各特徴の寄与を特定できない
+  record_status: unreviewed_seed
+- concept_id: cc58a12e-c2d5-5185-a388-7fc28da58032
+  canonical_name: Disentangled Representation
+  label_ja: 因子分離の困難
+  kind_code: F
+  definition_ja: 潜在変数が独立した意味を持つ形に分かれない
+  record_status: unreviewed_seed
+- concept_id: 66187007-3002-577c-a39e-225ba022bd80
+  canonical_name: Causal Identification
+  label_ja: 因果識別困難
+  kind_code: F
+  definition_ja: 観測から因果効果・構造を特定できない
+  record_status: unreviewed_seed
+- concept_id: cfd07b70-5436-5d22-89f6-ab87f5304b46
+  canonical_name: Counterfactual Reasoning
+  label_ja: 反事実推論困難
+  kind_code: F
+  definition_ja: 介入条件下の結果を妥当に推定できない
+  record_status: unreviewed_seed
+- concept_id: ea9c6701-8cb6-5345-8aca-2dda97ca53ea
+  canonical_name: Mechanistic Interpretability
+  label_ja: 内部機構の解釈困難
+  kind_code: F
+  definition_ja: 計算回路とモデル能力の対応がわからない
+  record_status: unreviewed_seed
+- concept_id: ccd2ac31-499a-5695-8e66-c8c7b9da1d09
+  canonical_name: Actionable Explanation
+  label_ja: 実行可能な説明の不足
+  kind_code: F
+  definition_ja: 説明を改善・判断へ接続できない
+  record_status: unreviewed_seed
+- concept_id: 0778da55-1040-5955-a4ec-44b397f94956
+  canonical_name: Data / Model Versioning
+  label_ja: データ・モデルの版管理不足
+  kind_code: F
+  definition_ja: データとモデルの対応を追跡できない
+  record_status: unreviewed_seed
+- concept_id: 177981ea-456d-5ed9-8887-aabbcfe42d2a
+  canonical_name: Data Lineage
+  label_ja: データ来歴の不透明性
+  kind_code: F
+  definition_ja: 由来・加工・利用経路を追跡できない
+  record_status: unreviewed_seed
+- concept_id: 77a73838-2436-55db-a13d-dcbd388207af
+  canonical_name: Training–Serving Skew
+  label_ja: 学習・提供時の乖離
+  kind_code: S
+  definition_ja: 前処理や特徴量が学習時と運用時で異なる
+  record_status: unreviewed_seed
+- concept_id: b5c2f6a2-0029-51bf-aac4-5b587bedca31
+  canonical_name: Model Monitoring
+  label_ja: モデル監視不足
+  kind_code: F
+  definition_ja: 劣化・異常な挙動を継続観測できない
+  record_status: unreviewed_seed
+- concept_id: 04b6513a-adf2-514e-a5c4-24c8343644eb
+  canonical_name: Label Feedback Delay
+  label_ja: 運用ラベルの取得遅延
+  kind_code: C
+  definition_ja: 運用時の正解取得が遅れる
+  record_status: unreviewed_seed
+- concept_id: bed4908d-1471-5c29-b3da-95f400b016ce
+  canonical_name: Retraining Strategy
+  label_ja: 再学習方針の不備
+  kind_code: F
+  definition_ja: いつ・何を・どの条件で再学習するか決めにくい
+  record_status: unreviewed_seed
+- concept_id: c95ef6ba-461f-5325-a8be-2d6924b5c116
+  canonical_name: Deployment Validation
+  label_ja: 導入前検証不足
+  kind_code: F
+  definition_ja: 実環境下の挙動を事前に確認できない
+  record_status: unreviewed_seed
+- concept_id: c41a6fbd-96cd-5bf7-832d-b944b61753d4
+  canonical_name: Reproducible Pipeline
+  label_ja: 再実行可能なパイプライン不足
+  kind_code: F
+  definition_ja: 学習実行条件・成果物を再構築できない
+  record_status: unreviewed_seed
+- concept_id: c9909f55-3b69-5d05-ad2e-526aa74f09e1
+  canonical_name: Model Rollback
+  label_ja: ロールバック困難
+  kind_code: F
+  definition_ja: 問題発生時に安全なモデルへ戻せない
+  record_status: unreviewed_seed
+- concept_id: ff45c2ac-b4b0-5495-8389-13807b0d3605
+  canonical_name: Model / Data Contract
+  label_ja: モデル・データ契約不備
+  kind_code: F
+  definition_ja: 入出力定義や品質制約が保たれない
+  record_status: unreviewed_seed
+- concept_id: 59b52dbc-eeaa-53a4-976e-e7708f42e753
+  canonical_name: Human-in-the-loop
+  label_ja: 人間関与の組込み困難
+  kind_code: F
+  definition_ja: 修正・承認・再学習への人の参加が難しい
+  record_status: unreviewed_seed
+- concept_id: fef3bf0c-1db8-5e2c-af55-dbebfc4ef636
+  canonical_name: Operational Technical Debt
+  label_ja: 運用上の技術的負債
+  kind_code: C
+  definition_ja: データ・コード・モデルの依存が複雑化する
+  record_status: unreviewed_seed
+- concept_id: abab2439-62ef-5f2f-999b-f3ea8b014d42
+  canonical_name: Algorithmic Bias
+  label_ja: アルゴリズム的偏り
+  kind_code: S
+  definition_ja: 一部の群・条件への系統的な偏りがある
+  record_status: unreviewed_seed
+- concept_id: 83b85c7c-9fcf-581c-a94e-0816f407e8cc
+  canonical_name: Group Fairness
+  label_ja: 集団公平性不足
+  kind_code: F
+  definition_ja: 集団別の機会や誤判定率に不公平がある
+  record_status: unreviewed_seed
+- concept_id: e35224a2-fea7-5acc-86e9-8a28df7ba096
+  canonical_name: Individual Fairness
+  label_ja: 個人公平性不足
+  kind_code: F
+  definition_ja: 類似する個人を不合理に異なる扱いにする
+  record_status: unreviewed_seed
+- concept_id: 3bd388be-7465-5e72-87c3-b58570cddb6f
+  canonical_name: Fairness under Shift
+  label_ja: シフト下の公平性低下
+  kind_code: F
+  definition_ja: 環境変化で集団間格差が悪化する
+  record_status: unreviewed_seed
+- concept_id: e971ac00-375c-595f-bcca-b52bf94ea085
+  canonical_name: Harmful Outputs
+  label_ja: 有害出力
+  kind_code: R
+  definition_ja: モデル出力が実害を生じ得る
+  record_status: unreviewed_seed
+- concept_id: aa84c7b5-9ac0-57e9-aebd-72e68d6e820d
+  canonical_name: Safety Assurance
+  label_ja: 安全性保証困難
+  kind_code: F
+  definition_ja: 事故・損害を防ぐ根拠が不十分
+  record_status: unreviewed_seed
+- concept_id: 45a66c5a-c0fd-56c1-af8d-e90f89caf8ca
+  canonical_name: Human Oversight
+  label_ja: 人間監督不足
+  kind_code: F
+  definition_ja: 異常時の理解・介入・停止が困難
+  record_status: unreviewed_seed
+- concept_id: e8e1a88a-7876-5f47-806d-5ad8df8e95b9
+  canonical_name: Value / Preference Misalignment
+  label_ja: 価値・選好との不整合
+  kind_code: F
+  definition_ja: 出力・行動が人間の目的に合わない
+  record_status: unreviewed_seed
+- concept_id: 8b319382-0da1-5bde-90fa-510b721785f4
+  canonical_name: Dual-use Risk
+  label_ja: デュアルユースのリスク
+  kind_code: R
+  definition_ja: 技術が悪用にも用いられる
+  record_status: unreviewed_seed
+- concept_id: 0b43f210-8997-5076-9176-3f1e6977dd53
+  canonical_name: Societal Externalities
+  label_ja: 社会的外部性
+  kind_code: R
+  definition_ja: 社会・労働・情報環境へ波及する
+  record_status: unreviewed_seed
+- concept_id: 68f3d971-c9db-582f-88bd-1eb51c3cfb78
+  canonical_name: Membership Inference
+  label_ja: 学習参加の推定リスク
+  kind_code: R
+  definition_ja: あるデータが訓練に含まれたか推定される
+  record_status: unreviewed_seed
+- concept_id: 417b9aab-2a81-56be-84c5-990eaebd3e8b
+  canonical_name: Model Inversion
+  label_ja: モデル反転リスク
+  kind_code: R
+  definition_ja: 学習情報や入力の一部を復元される
+  record_status: unreviewed_seed
+- concept_id: 172bf3d6-ddd3-52ba-a249-e1967bce3e81
+  canonical_name: Training Data Extraction
+  label_ja: 学習データ抽出リスク
+  kind_code: R
+  definition_ja: 記憶された訓練データが出力される
+  record_status: unreviewed_seed
+- concept_id: b6c276f8-3b97-57c3-b001-e35f985395a5
+  canonical_name: Federated Learning Security
+  label_ja: 連合学習の安全性
+  kind_code: R
+  definition_ja: 更新情報から漏えい・不正更新が起きる
+  record_status: unreviewed_seed
+- concept_id: 18e3836c-5ed1-5894-8cb6-6c7d58fc2c74
+  canonical_name: Privacy–Utility Trade-off
+  label_ja: プライバシーと有用性の競合
+  kind_code: C
+  definition_ja: 保護措置がモデル有用性と競合する場合がある
+  record_status: unreviewed_seed
+- concept_id: fa58734a-4ecd-5138-b495-f24c49926a9e
+  canonical_name: Machine Unlearning
+  label_ja: 機械的忘却の困難
+  kind_code: F
+  definition_ja: 指定データの学習影響を除去しにくい
+  record_status: unreviewed_seed
+- concept_id: f8aa9523-1386-53e7-acc6-eb28d847fc63
+  canonical_name: Data Provenance
+  label_ja: データ来歴・出自不足
+  kind_code: F
+  definition_ja: 出自・権利・利用条件を追跡できない
+  record_status: unreviewed_seed
+- concept_id: 2c4f7bf8-bc7b-5ae3-9a13-ba76fd2d6bed
+  canonical_name: Copyright / Licensing
+  label_ja: 著作権・ライセンス課題
+  kind_code: C
+  definition_ja: 学習・生成・再配布の権利処理が難しい
+  record_status: unreviewed_seed
+- concept_id: 73b00781-b058-5b9a-8bf5-c61ed836c516
+  canonical_name: Accountability
+  label_ja: 説明責任の不明確さ
+  kind_code: C
+  definition_ja: 結果に対する責任主体・手順が曖昧
+  record_status: unreviewed_seed
+- concept_id: a3f0cf9c-8c99-52fe-b2ed-2ecb57e61099
+  canonical_name: Auditability
+  label_ja: 監査可能性不足
+  kind_code: F
+  definition_ja: モデルの変更・判断を監査できない
+  record_status: unreviewed_seed
+- concept_id: bd8d496f-30b4-556c-83fd-493069676775
+  canonical_name: Regulatory Compliance
+  label_ja: 規制適合困難
+  kind_code: F
+  definition_ja: 法令・業界要件と設計を整合できない
+  record_status: unreviewed_seed
+- concept_id: c2f6a358-c263-5150-895b-7574b2c8329b
+  canonical_name: Generalization Theory
+  label_ja: 汎化理論の未解明点
+  kind_code: F
+  definition_ja: なぜ未知データに汎化できるか十分に説明できない
+  record_status: unreviewed_seed
+- concept_id: 6bbd4a65-5944-5de1-9dd6-e88f4a13381f
+  canonical_name: Double Descent
+  label_ja: ダブルディセント
+  kind_code: S
+  definition_ja: 容量と誤差の関係が非単調になる現象
+  record_status: unreviewed_seed
+- concept_id: 1b9c8b00-25d0-5c96-93dd-08630f37a240
+  canonical_name: Implicit Bias
+  label_ja: 最適化の暗黙バイアス
+  kind_code: M
+  definition_ja: 最適化器が特定種の解を選好する
+  record_status: unreviewed_seed
+- concept_id: 5211cf0e-976f-5e51-ba74-c243db37d54e
+  canonical_name: Feature Learning Dynamics
+  label_ja: 特徴形成の動態
+  kind_code: M
+  definition_ja: 学習中の内部特徴の形成・変化のメカニズム
+  record_status: unreviewed_seed
+- concept_id: a98033bf-6cd0-5838-8335-9b1ccaac98a3
+  canonical_name: Scaling Law Validity
+  label_ja: スケーリング則の適用限界
+  kind_code: C
+  definition_ja: 性能外挿が状況・規模で破綻し得る
+  record_status: unreviewed_seed
+- concept_id: 40ad0727-d46b-5283-b75f-aa409a5b54b6
+  canonical_name: Identifiability
+  label_ja: 識別可能性の限界
+  kind_code: C
+  definition_ja: 観測から潜在構造が一意に定まらない
+  record_status: unreviewed_seed
+- concept_id: 865552fe-9a46-59c0-977e-30cd51100e75
+  canonical_name: Formal Verification
+  label_ja: 形式的検証困難
+  kind_code: F
+  definition_ja: 複雑なモデルの性質を数学的に証明しにくい
+  record_status: unreviewed_seed
+- concept_id: eaaa7caa-fb05-5b2b-8398-62f2b71d869f
+  canonical_name: Certified Guarantees
+  label_ja: 保証付与の困難
+  kind_code: F
+  definition_ja: 安全性・誤差などに適用条件付き保証しか与えにくい
+  record_status: unreviewed_seed
+- concept_id: 5c26f1cd-0e4c-57f1-a17a-94433ecc14d8
+  canonical_name: Fundamental Limits
+  label_ja: 本質的な達成限界
+  kind_code: C
+  definition_ja: 情報量・データ・計算などの限界がある
+  record_status: unreviewed_seed
+- concept_id: d26e9b9a-c0de-5002-8a1a-5b29e2250af5
+  canonical_name: Emergent Behavior
+  label_ja: 能力の非連続的出現・見かけ
+  kind_code: S
+  definition_ja: 規模の変化で能力が突如現れるように見える場合がある
+  record_status: unreviewed_seed
+- concept_id: 403f7e95-cf06-5260-84cf-5c9aeb5b1287
+  canonical_name: Hallucination
+  label_ja: 幻覚・非根拠生成
+  kind_code: F
+  definition_ja: 事実や入力に基づかない内容を生成する
+  record_status: unreviewed_seed
+- concept_id: e24ad748-4cf0-549b-87a6-1d10f3d23284
+  canonical_name: Factual Grounding
+  label_ja: 事実根拠への接続不足
+  kind_code: F
+  definition_ja: 生成結果の根拠が資料・事実に結び付かない
+  record_status: unreviewed_seed
+- concept_id: e961edd2-b527-5d8b-bf02-1d23d0973843
+  canonical_name: Knowledge Staleness
+  label_ja: 知識の陳腐化
+  kind_code: S
+  definition_ja: 学習後に更新された情報を持たない
+  record_status: unreviewed_seed
+- concept_id: 816c467d-58bb-51a4-81a7-5efbf92cddbc
+  canonical_name: Long-context Degradation
+  label_ja: 長文脈性能低下
+  kind_code: F
+  definition_ja: 入力が長いと必要な情報を活用できない
+  record_status: unreviewed_seed
+- concept_id: 903e6574-8af1-54eb-851e-4b9581c279d3
+  canonical_name: Memorization
+  label_ja: 訓練例の記憶・再現
+  kind_code: M
+  definition_ja: 訓練内容を不必要に再生できる状態になる
+  record_status: unreviewed_seed
+- concept_id: 39411824-5bf5-5d3d-9bd7-5b81e87916f1
+  canonical_name: Generation Diversity
+  label_ja: 生成多様性不足
+  kind_code: F
+  definition_ja: 出力が似通い多様な候補を得られない
+  record_status: unreviewed_seed
+- concept_id: 1106b425-98a2-5899-8be5-f5af3ee0e304
+  canonical_name: Controllability
+  label_ja: 生成制御困難
+  kind_code: F
+  definition_ja: 指定条件・形式・制約を守れない
+  record_status: unreviewed_seed
+- concept_id: ec649316-60bc-5bda-b9c7-027eb6ad1e6c
+  canonical_name: Temporal Consistency
+  label_ja: 生成の時間的一貫性不足
+  kind_code: F
+  definition_ja: 連続画像・音声・動画の連続性が崩れる
+  record_status: unreviewed_seed
+- concept_id: 0d59e3ec-2c3e-539f-9f9e-d7394ca1d3a4
+  canonical_name: Reasoning Reliability
+  label_ja: 推論の信頼性不足
+  kind_code: F
+  definition_ja: 論理・数値・計画タスクが安定しない
+  record_status: unreviewed_seed
+- concept_id: 3721d338-9988-5a45-9c73-335e0ab29259
+  canonical_name: Alignment Failure
+  label_ja: 整合性の失敗
+  kind_code: F
+  definition_ja: モデルの振る舞いが意図する目標に適合しない
+  record_status: unreviewed_seed
+- concept_id: 07fbeef1-7675-5d67-bcfb-643d64b8faf5
+  canonical_name: Reward Hacking
+  label_ja: 報酬ハッキング
+  kind_code: M
+  definition_ja: 評価や報酬の抜け道を利用する
+  record_status: unreviewed_seed
+- concept_id: 749244ed-1bb5-5668-a850-c1ba9fe83cad
+  canonical_name: Knowledge Editing
+  label_ja: 知識編集の困難
+  kind_code: F
+  definition_ja: 特定知識の変更が周辺知識に悪影響を与える
+  record_status: unreviewed_seed
+- concept_id: d6d86843-0066-534b-b03b-16f42779c0f5
+  canonical_name: Cross-modal Alignment
+  label_ja: モダリティ間対応の不足
+  kind_code: F
+  definition_ja: 画像・音声・文字などの表現を対応させられない
+  record_status: unreviewed_seed
+- concept_id: 6fc7151a-8d76-50c7-b6dd-6e921657286a
+  canonical_name: Modality Imbalance
+  label_ja: モダリティ寄与の偏り
+  kind_code: S
+  definition_ja: 特定の入力種に過度に依存する
+  record_status: unreviewed_seed
+- concept_id: 205bcf20-e8b7-5c2f-bbd9-4b5e238fbf23
+  canonical_name: Missing Modality
+  label_ja: モダリティ欠損
+  kind_code: S
+  definition_ja: 利用可能な入力種が一部欠ける
+  record_status: unreviewed_seed
+- concept_id: afc17a63-d2ab-5d16-a28b-e7a6bb1888fe
+  canonical_name: Fusion Strategy
+  label_ja: モダリティ融合の困難
+  kind_code: F
+  definition_ja: 統合のタイミング・方式を決められない
+  record_status: unreviewed_seed
+- concept_id: e9cedd7d-e0dd-5d2a-9c9e-c358a76aae7a
+  canonical_name: Cross-modal Grounding
+  label_ja: モダリティ間根拠の不足
+  kind_code: F
+  definition_ja: 言語と視覚・音声内の対象が結び付かない
+  record_status: unreviewed_seed
+- concept_id: 607a0ac3-6c8e-5d06-8c1c-9da400d21ec0
+  canonical_name: Spatial Reasoning
+  label_ja: 空間推論困難
+  kind_code: F
+  definition_ja: 位置・距離・幾何関係を正しく扱えない
+  record_status: unreviewed_seed
+- concept_id: ebd67dc8-be65-51c9-b0fb-fb6137b7a207
+  canonical_name: Temporal Synchronization
+  label_ja: 時間同期困難
+  kind_code: F
+  definition_ja: 動画・音声などの時刻対応が崩れる
+  record_status: unreviewed_seed
+- concept_id: 2af1bade-b63f-5ffb-9b56-892b54249945
+  canonical_name: Cross-modal Contradiction
+  label_ja: モダリティ間矛盾
+  kind_code: S
+  definition_ja: 異種入力間で相反する情報が存在する
+  record_status: unreviewed_seed
+- concept_id: 4647d6cf-ceab-5f54-863b-2f4250645626
+  canonical_name: Modality-specific Robustness
+  label_ja: 特定モダリティ劣化への弱さ
+  kind_code: F
+  definition_ja: 一部入力の劣化が全体性能を下げる
+  record_status: unreviewed_seed
+- concept_id: d42223a1-1702-5993-af17-1a2bde517ad6
+  canonical_name: Exploration–Exploitation
+  label_ja: 探索と活用の競合
+  kind_code: C
+  definition_ja: 探索行動と既知の高報酬行動のバランスが難しい
+  record_status: unreviewed_seed
+- concept_id: 7ea8e618-fd61-5b48-b692-3195194a0608
+  canonical_name: Sample Inefficiency
+  label_ja: 試行効率不足
+  kind_code: F
+  definition_ja: 大量の相互作用が必要
+  record_status: unreviewed_seed
+- concept_id: 525ae0e8-c7aa-5acf-8ff6-74cedc1f3b6e
+  canonical_name: Sparse Rewards
+  label_ja: 疎な報酬
+  kind_code: S
+  definition_ja: 学習を導く報酬の観測が少ない
+  record_status: unreviewed_seed
+- concept_id: e6783bab-1275-5ba4-a4ea-2ffb59cc8ee7
+  canonical_name: Reward Misspecification
+  label_ja: 報酬仕様不備
+  kind_code: C
+  definition_ja: 報酬定義と本来目標が一致しない
+  record_status: unreviewed_seed
+- concept_id: 3d626546-f391-55d3-a117-acc9f4257458
+  canonical_name: Partial Observability
+  label_ja: 部分観測
+  kind_code: S
+  definition_ja: 環境の全状態を観測できない
+  record_status: unreviewed_seed
+- concept_id: 376148ee-d449-5869-a59e-f77ed27d31e4
+  canonical_name: Long-horizon Planning
+  label_ja: 長期計画困難
+  kind_code: F
+  definition_ja: 長期にわたる計画・実行が不安定
+  record_status: unreviewed_seed
+- concept_id: f64dec1d-9097-564c-aa36-fd70c2ab3f5f
+  canonical_name: Credit Assignment
+  label_ja: 寄与割当困難
+  kind_code: F
+  definition_ja: どの行動が結果に貢献したか特定しにくい
+  record_status: unreviewed_seed
+- concept_id: deac7137-d318-5c2c-be0c-3b5a5e398b57
+  canonical_name: Sim-to-real Gap
+  label_ja: シミュレーションと現実の差
+  kind_code: S
+  definition_ja: シミュレータと現実の力学・観測に差がある
+  record_status: unreviewed_seed
+- concept_id: a570f3b3-0859-5159-a4d0-ef95e9f29a14
+  canonical_name: Safe Exploration
+  label_ja: 安全な探索の困難
+  kind_code: F
+  definition_ja: 危険行動を避けつつ学習できない
+  record_status: unreviewed_seed
+- concept_id: e7d411cf-01b2-58c4-b3be-665b4daf8480
+  canonical_name: Tool-use Reliability
+  label_ja: ツール利用の信頼性不足
+  kind_code: F
+  definition_ja: 選択・呼出・引数・結果解釈が失敗する
+  record_status: unreviewed_seed
+- concept_id: d5ea9815-5a75-588f-9c58-18931038f908
+  canonical_name: Agent Security
+  label_ja: エージェントの安全保障リスク
+  kind_code: R
+  definition_ja: ツールや外部入力から権限逸脱が起きる
+  record_status: unreviewed_seed
+- concept_id: 70ce625f-552a-5fc4-bc01-37acc56f0592
+  canonical_name: Multi-agent Coordination
+  label_ja: 複数主体の協調困難
+  kind_code: F
+  definition_ja: 複数エージェントの協調・競争が難しい
+  record_status: unreviewed_seed
+- concept_id: 973a83d3-e6dc-5d71-8625-9d0932f04f9d
+  canonical_name: Physical Consistency
+  label_ja: 物理整合性の欠如
+  kind_code: F
+  definition_ja: 予測が支配方程式・幾何拘束などと矛盾する
+  record_status: unreviewed_seed
+- concept_id: 8c143c2c-7901-5e8f-a3d8-49a0e60c3989
+  canonical_name: Conservation Laws
+  label_ja: 保存則違反
+  kind_code: F
+  definition_ja: エネルギー・質量などの保存が守られない
+  record_status: unreviewed_seed
+- concept_id: 8ceba2c0-d520-5c6b-969f-00a6f7a808be
+  canonical_name: Extrapolation
+  label_ja: 外挿困難
+  kind_code: F
+  definition_ja: 観測範囲外の条件で推定性能が低下する
+  record_status: unreviewed_seed
+- concept_id: 5fdbce1f-f49f-5b7e-97a1-6a77cf56dded
+  canonical_name: Sparse Observation
+  label_ja: 観測の疎性
+  kind_code: C
+  definition_ja: 利用可能な観測点・観測頻度が少ない
+  record_status: unreviewed_seed
+- concept_id: 5ce936d4-f1f6-5fbd-a01c-4404da9cccf5
+  canonical_name: Inverse Problem Ill-posedness
+  label_ja: 逆問題の不適切性
+  kind_code: C
+  definition_ja: 解の一意性・安定性・存在が保証されない
+  record_status: unreviewed_seed
+- concept_id: 0251aa6a-5851-5211-9833-1451dcc0ace0
+  canonical_name: Multi-scale Modeling
+  label_ja: マルチスケールモデル化困難
+  kind_code: F
+  definition_ja: 複数の空間・時間スケールを同時に扱えない
+  record_status: unreviewed_seed
+- concept_id: 52e6420a-b716-5e76-b33f-05d1b098ca09
+  canonical_name: Numerical Stability
+  label_ja: 予測計算の数値不安定性
+  kind_code: F
+  definition_ja: 長時間積分などで誤差が増幅する
+  record_status: unreviewed_seed
+- concept_id: 0e1da908-8bf8-5372-899d-12ad13b5630c
+  canonical_name: Sim-to-real Validation
+  label_ja: 実環境への移行検証困難
+  kind_code: F
+  definition_ja: シミュレーションから実機性能を検証しにくい
+  record_status: unreviewed_seed
+- concept_id: bfa5191c-7879-50da-955f-91f7acd4d234
+  canonical_name: Scientific Plausibility
+  label_ja: 科学的妥当性の欠如
+  kind_code: F
+  definition_ja: もっともらしくても科学的に誤った予測をする
+  record_status: unreviewed_seed
+- concept_id: b06bc94f-d47c-567c-a789-760dd4228164
+  canonical_name: Experimental Validation
+  label_ja: 実験検証の負担
+  kind_code: C
+  definition_ja: 検証実験に多大な費用・時間が必要
+  record_status: unreviewed_seed
+- concept_id: 8433c220-127e-59d0-bdb1-9b9279483147
+  canonical_name: 分布シフト（総称）（Distribution Shift）
+  label_ja: 分布シフト（総称）（Distribution Shift）
+  kind_code: S
+  definition_ja: P_train(X,Y) と P_target(X,Y) など関心のある分布が異なること
+  record_status: unreviewed_seed
+  auxiliary: true
+- concept_id: 15680332-ba86-51bb-bd80-cf2e595fb450
+  canonical_name: 時間方向の分布変化（総称）（Temporal Distribution Change）
+  label_ja: 時間方向の分布変化（総称）（Temporal Distribution Change）
+  kind_code: S
+  definition_ja: 時刻tごとに確率分布などの性質が変化すること
+  record_status: unreviewed_seed
+  auxiliary: true

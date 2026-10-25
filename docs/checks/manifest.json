@@ -1,0 +1,102 @@
+{
+  "package": "Docs",
+  "file_count_excluding_manifest": 24,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "cfea1adeb7e858ed59315e1a09257b0ca3d00ad9ee775faa818c5bd6d38d14b9"
+    },
+    {
+      "path": "catalog/README.md",
+      "sha256": "d477aa0ec479bcaffc21fa6621ba9e994f9537d374dbb467f8549fada55d6a26"
+    },
+    {
+      "path": "catalog/concept_dictionary.md",
+      "sha256": "48ec581c2302cbce8b81f3206edf2b3d2d077a99e976f045e9b50efda8a89695"
+    },
+    {
+      "path": "catalog/concept_metric_links.yaml",
+      "sha256": "f5ac854bc8475ec3c625ed7dac372be9a3fbf63c0a56ac4aae54e35b59ee3583"
+    },
+    {
+      "path": "catalog/concept_relations.yaml",
+      "sha256": "f25eff50b425f106d776b83f499ff58194b40ea63094d85281add4b63735b2ae"
+    },
+    {
+      "path": "catalog/concept_topic_assignments.yaml",
+      "sha256": "f792685fb2eead82a0a007bcd1c36b4cc0b79ef75beb279f59ac638903b738ea"
+    },
+    {
+      "path": "catalog/concepts.yaml",
+      "sha256": "f0e74ebe7d316f5459edb9a808d295fdb2a320a552287bbde35ee0f5a68251a1"
+    },
+    {
+      "path": "catalog/method_concept_links.yaml",
+      "sha256": "527bd4ab3e2f2bda70c89cee5e12f0f43307c707a2ba839a46d061fd17070bd1"
+    },
+    {
+      "path": "catalog/methods.yaml",
+      "sha256": "1d6fe3aa5c1321bc3a8fbe129822271a0b5bd195382191d224a78ab1ce9af0d9"
+    },
+    {
+      "path": "catalog/metrics.yaml",
+      "sha256": "dc65ca78265fd5ebb7e23ab5a96d1fbc49681e340b88976046bf7f58414cae4e"
+    },
+    {
+      "path": "catalog/relation_method_metric_dictionary.md",
+      "sha256": "4084661f793deb2b72bb33be7651e537219e555662bedaf3705dc71a8096a785"
+    },
+    {
+      "path": "catalog/relation_types.yaml",
+      "sha256": "bacb9a97be44cd51093b561a0626be612f9545bd8f07768d056434a4494aa73e"
+    },
+    {
+      "path": "catalog/topic_area_versions.yaml",
+      "sha256": "74231e6554e18688b14ad1ed5082212f02dfa28484a3ee813b2ff973e49591a1"
+    },
+    {
+      "path": "catalog/topics.yaml",
+      "sha256": "019cfe1f7a1e9e4ca1a82a5032cd983b4d34a624e7939016bb82cf490cc8e2c4"
+    },
+    {
+      "path": "checks/test_validation.py",
+      "sha256": "7c612cf03e9dd2f610ef422756b125f2f07f7a22b91e651db6e396a4b74654bd"
+    },
+    {
+      "path": "checks/validate_package.py",
+      "sha256": "945b30806a5e588a6991baad83a82ded4c1502aa1fd3fd5b446d43ed1f596b28"
+    },
+    {
+      "path": "contracts/02_api_contracts_and_tests.md",
+      "sha256": "bed13654f39ab4e4db8c9118c82a659643675b21317e960019a400de6f18ba7a"
+    },
+    {
+      "path": "design/01_architecture_and_data_model.md",
+      "sha256": "698f59b3d4352cd252763bf4f00910b604e5c74b127e77373b4b79ff2fbef231"
+    },
+    {
+      "path": "design/06_integrity_and_model_contracts.md",
+      "sha256": "07288b02cc5ca918a7e9772ab286e9f7489aba1298f870dbd393e1af12ace06a"
+    },
+    {
+      "path": "diagrams/knowledge_research_er.puml",
+      "sha256": "74754add7503def70c923c98d133e2031cb403c4e18580a3ff1270639b57b786"
+    },
+    {
+      "path": "examples/example_paper_5_experiments.yaml",
+      "sha256": "d517f1231e248a1c6ac1e85dd1e4b3c4dabc60783b223f722303c0618780ab03"
+    },
+    {
+      "path": "experiments/04_experiment_model_reference.md",
+      "sha256": "43bc215215aaf3754b2afff9fcc09fa370301a6d9bf133481e54e119b46cb255"
+    },
+    {
+      "path": "ontology/03_core_ontology_reference.md",
+      "sha256": "b0dabb0f5cbe6ec534c6fa4ca62df3801cc996b42ace160dd4aadc62e8289821"
+    },
+    {
+      "path": "references/05_sources_and_validation.md",
+      "sha256": "88630c33c71ff770c18f3ecc71e32fead19d98e6fb736b2b673b4824198cd293"
+    }
+  ]
+}

@@ -1,0 +1,1150 @@
+' Deep Learning research knowledge platform logical model
+' Date: 2026-10-25. Logical diagrams: 10 independent PlantUML units. Standalone diagram definitions; no external includes.
+' References to same logical table in distinct diagrams are NOT duplicate tables.
+
+@startuml MODEL_01_Overview
+!theme plain
+title model-1. Research knowledge closed loop / overview
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "CONCEPT\n215 stable items" as Concept #DBEAFE
+entity "CLAIM\nnormalized proposition" as Claim #DBEAFE
+entity "PUBLICATION / DOCUMENT_VERSION" as Pub #F1F5F9
+entity "SOURCE_ASSERTION" as SA #F1F5F9
+entity "PAPER_EXPERIMENT / PAPER_RESULT" as PE #F1F5F9
+entity "METHOD / METHOD_VERSION" as Method #E9D5FF
+entity "IMPLEMENTATION_VERSION" as Impl #E9D5FF
+entity "EXPERIMENT_RUN" as Run #CCFBF1
+entity "EVALUATION / METRIC_RESULT" as Eval #CCFBF1
+entity "EVIDENCE" as Evidence #FEF3C7
+entity "EVIDENCE_SYNTHESIS" as Synth #FEF3C7
+entity "RESEARCH_QUESTION / KNOWLEDGE_GAP" as Question #FCE7F3
+entity "EXPERIMENT_PROPOSAL" as Proposal #FCE7F3
+entity "REVIEW_DECISION / EXECUTION_APPROVAL" as Approval #FEE2E2
+Pub ||--o{ SA
+Pub ||--o{ PE
+SA }o--o{ Claim : interpreted_as
+PE }o--o{ Method : describes
+Method ||--o{ Impl : implemented_by
+Impl ||--o{ Run : used_in
+Run ||--o{ Eval
+PE }o--o{ Evidence : grounding
+Eval }o--o{ Evidence : measurement
+Evidence }o--o{ Claim : stance
+Evidence }o--o{ Synth
+Claim ||--o{ Synth
+Concept }o--o{ Claim : typed_relation
+Synth }o--o{ Question : reveals_gap
+Question ||--o{ Proposal
+Proposal }o--o{ Approval : authorize
+Approval }o--o{ Run : dispatch
+note bottom of Evidence
+Source observation != causal proof.
+Edges here are conceptual; detailed keys are in the following ERs.
+end note
+@enduml
+
+@startuml MODEL_02_Concepts_and_Conditions
+!theme plain
+title model-2. Stable concepts, versioned taxonomy, structured applicability
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "CONCEPT" as Concept #DBEAFE {
+ * concept_id : UUID <<PK>>
+ --
+ * canonical_name : TEXT
+ * definition : TEXT
+ * kind_code : TEXT <<FK>>
+ * status : TEXT
+}
+entity "CONCEPT_REVISION" as Revision #DBEAFE {
+ * revision_id : UUID <<PK>>
+ --
+ * concept_id : UUID <<FK>>
+ * revision_no : INT
+ * definition_snapshot : TEXT
+}
+entity "TOPIC_AREA" as Area #F1F5F9 {
+ * area_id : TEXT <<PK>>
+ --
+ * area_kind : TEXT
+}
+entity "TOPIC_AREA_VERSION" as AreaV #F1F5F9 {
+ * topic_version_id : UUID <<PK>>
+ --
+ * area_id : TEXT <<FK>>
+ * revision_no : INT
+ * name : TEXT
+}
+entity "CONCEPT_TOPIC_ASSIGNMENT" as Assign #F1F5F9 {
+ * assignment_id : UUID <<PK>>
+ --
+ * concept_id : UUID <<FK>>
+ * topic_version_id : UUID <<FK>>
+ * status : TEXT
+ * valid_from : DATE
+ valid_to : DATE
+}
+entity "CONDITION_DIMENSION" as Dim #CCFBF1 {
+ * dimension_id : UUID <<PK>>
+ --
+ * code : TEXT <<unique>>
+ * data_type : TEXT
+ * allowed_ops : JSONB
+}
+entity "APPLICABILITY_PROFILE" as Profile #CCFBF1 {
+ * profile_id : UUID <<PK>>
+ --
+ * title : TEXT
+ * logic : TEXT
+}
+entity "PROFILE_CONDITION" as Cond #CCFBF1 {
+ * profile_condition_id : UUID <<PK>>
+ --
+ * profile_id : UUID <<FK>>
+ * dimension_id : UUID <<FK>>
+ * operator : TEXT
+ value_json : JSONB
+ * known_status : TEXT
+ unit : TEXT
+}
+entity "CLAIM" as Claim #FFEDD5 {
+ * claim_id : UUID <<PK>>
+ --
+ * claim_kind : TEXT
+}
+entity "CLAIM_PROFILE" as CP #FFEDD5 {
+ * claim_id : UUID <<PK,FK>>
+ * profile_id : UUID <<PK,FK>>
+ --
+ * relation_role : TEXT
+}
+Concept ||--o{ Revision
+Area ||--o{ AreaV
+Concept ||--o{ Assign
+AreaV ||--o{ Assign
+Profile ||--o{ Cond
+Dim ||--o{ Cond
+Claim ||--o{ CP
+Profile ||--o{ CP
+@enduml
+
+@startuml MODEL_03_Literature_and_Experiments
+!theme plain
+title model-3. Publication assertions, experiment arms, per-metric results
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "PUBLICATION" as Pub #DBEAFE {
+ * publication_id : UUID <<PK>>
+ --
+ doi : TEXT <<unique nullable>>
+ arxiv_id : TEXT <<nullable>>
+ * title : TEXT
+}
+entity "DOCUMENT_VERSION" as Doc #DBEAFE {
+ * document_version_id : UUID <<PK>>
+ --
+ * publication_id : UUID <<FK>>
+ * version_label : TEXT
+ checksum : CHAR(64)
+ artifact_id : UUID <<FK nullable>>
+}
+entity "SOURCE_EXCERPT" as Ex #F1F5F9 {
+ * excerpt_id : UUID <<PK>>
+ --
+ * document_version_id : UUID <<FK>>
+ page_number : INT
+ section : TEXT
+ table_ref : TEXT
+ text_anchor : TEXT
+}
+entity "EXTRACTION_RUN" as ER #F1F5F9 {
+ * extraction_run_id : UUID <<PK>>
+ --
+ * document_version_id : UUID <<FK>>
+ * schema_version : TEXT
+ model_id : TEXT
+ config_hash : CHAR(64)
+}
+entity "EXTRACTION_CANDIDATE" as Candidate #F1F5F9 {
+ * candidate_id : UUID <<PK>>
+ --
+ * extraction_run_id : UUID <<FK>>
+ * candidate_kind : TEXT
+ * proposed_payload_json : JSONB
+ * status : TEXT
+}
+entity "SOURCE_ASSERTION" as SA #F1F5F9 {
+ * assertion_id : UUID <<PK>>
+ --
+ * document_version_id : UUID <<FK>>
+ * source_excerpt_id : UUID <<FK>>
+ extraction_run_id : UUID <<FK nullable>>
+ * assertion_text : TEXT
+ * provenance_status : TEXT
+ * approved_review_id : UUID <<FK>>
+}
+entity "CLAIM" as Claim #FEF3C7 {
+ * claim_id : UUID <<PK>>
+}
+entity "SOURCE_ASSERTION_CLAIM" as Link #FEF3C7 {
+ * assertion_id : UUID <<PK,FK>>
+ * claim_id : UUID <<PK,FK>>
+ --
+ * mapping_relation : TEXT
+ * review_status : TEXT
+}
+entity "PAPER_EXPERIMENT" as PExp #CCFBF1 {
+ * paper_experiment_id : UUID <<PK>>
+ --
+ * document_version_id : UUID <<FK>>
+ * experiment_label : TEXT
+ profile_id : UUID <<FK nullable>>
+}
+entity "PAPER_ARM" as Arm #CCFBF1 {
+ * paper_arm_id : UUID <<PK>>
+ --
+ * paper_experiment_id : UUID <<FK>>
+ * arm_role : TEXT
+ * reported_setup : TEXT
+}
+entity "PAPER_RESULT" as Result #CCFBF1 {
+ * paper_result_id : UUID <<PK>>
+ --
+ * paper_arm_id : UUID <<FK>>
+ metric_id : UUID <<FK nullable>>
+ * metric_definition_text : TEXT
+ * slice_spec_json : JSONB
+ numeric_value : DECIMAL <<nullable>>
+ reported_value_text : TEXT
+ * result_status : TEXT
+ * provenance_status : TEXT
+ * approved_review_id : UUID <<FK>>
+ * excerpt_id : UUID <<FK>>
+}
+entity "PAPER_COMPARISON" as PC #CCFBF1 {
+ * paper_comparison_id : UUID <<PK>>
+ --
+ * baseline_arm_id : UUID <<FK>>
+ * candidate_arm_id : UUID <<FK>>
+ * comparable_status : TEXT
+ * source_excerpt_id : UUID <<FK>>
+}
+entity "PAPER_RESULT_INTERPRETATION" as PRI #CCFBF1 {
+ * interpretation_id : UUID <<PK>>
+ --
+ paper_result_id : UUID <<FK nullable>>
+ paper_comparison_id : UUID <<FK nullable>>
+ * assertion_id : UUID <<FK>>
+ * review_status : TEXT
+}
+entity "EVIDENCE" as Evidence #FEE2E2 {
+ * evidence_id : UUID <<PK>>
+}
+entity "LITERATURE_EVIDENCE" as LE #FEE2E2 {
+ * evidence_id : UUID <<PK,FK>>
+ --
+ assertion_id : UUID <<FK nullable>>
+ paper_result_id : UUID <<FK nullable>>
+ paper_comparison_id : UUID <<FK nullable>>
+}
+Pub ||--o{ Doc
+Doc ||--o{ Ex
+Doc ||--o{ ER
+Doc ||--o{ SA
+Ex ||--o{ SA
+ER ||--o{ Candidate
+ER |o--o{ SA
+SA ||--o{ Link
+Claim ||--o{ Link
+Doc ||--o{ PExp
+PExp ||--o{ Arm
+Arm ||--o{ Result
+Ex ||--o{ Result
+Arm ||--o{ PC : baseline
+Arm ||--o{ PC : candidate
+Ex ||--o{ PC
+Result |o--o{ PRI
+PC |o--o{ PRI
+SA ||--o{ PRI
+Evidence ||--o| LE
+SA |o--o{ LE
+Result |o--o{ LE
+PC |o--o{ LE
+note bottom of PC
+Both arms must belong to the same PAPER_EXPERIMENT.
+DB trigger or application contract checks this.
+end note
+note bottom of LE
+Exactly one of assertion_id, paper_result_id,
+paper_comparison_id is not NULL.
+end note
+@enduml
+
+@startuml MODEL_04_Method_to_Run
+!theme plain
+title model-4. Method specification, implementation snapshot, execution, reproduction
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "METHOD" as Method #DBEAFE {
+ * method_id : UUID <<PK>>
+ --
+ * canonical_name : TEXT
+ * method_kind : TEXT
+ parent_method_id : UUID <<FK nullable>>
+}
+entity "METHOD_VERSION" as MV #DBEAFE {
+ * method_version_id : UUID <<PK>>
+ --
+ * method_id : UUID <<FK>>
+ * version_label : TEXT
+ specification_hash : CHAR(64)
+ paper_assertion_id : UUID <<FK nullable>>
+}
+entity "IMPLEMENTATION_VERSION" as Impl #CCFBF1 {
+ * implementation_version_id : UUID <<PK>>
+ --
+ repo_url : TEXT
+ git_commit : CHAR(40)
+ tree_hash : CHAR(64)
+ container_digest : TEXT
+ config_hash : CHAR(64)
+}
+entity "METHOD_IMPLEMENTATION" as MI #CCFBF1 {
+ * method_version_id : UUID <<PK,FK>>
+ * implementation_version_id : UUID <<PK,FK>>
+ --
+ * adherence : TEXT
+ deviation_spec : JSONB
+}
+entity "PAPER_ARM" as Arm #F1F5F9 {
+ * paper_arm_id : UUID <<PK>>
+}
+entity "PAPER_ARM_METHOD" as PAM #F1F5F9 {
+ * paper_arm_id : UUID <<PK,FK>>
+ * method_version_id : UUID <<PK,FK>>
+ --
+ * usage_role : TEXT
+}
+entity "EXPERIMENT_RUN" as Run #FEF3C7 {
+ * run_id : UUID <<PK>>
+}
+entity "RUN_METHOD_USAGE" as MU #FEF3C7 {
+ * usage_id : UUID <<PK>>
+ --
+ * run_id : UUID <<FK>>
+ * method_version_id : UUID <<FK>>
+ * implementation_version_id : UUID <<FK>>
+ * usage_role : TEXT
+ effective_config_hash : CHAR(64)
+}
+entity "INTERVENTION" as Intervention #E9D5FF {
+ * intervention_id : UUID <<PK>>
+}
+entity "INTERVENTION_METHOD" as IM #E9D5FF {
+ * intervention_id : UUID <<PK,FK>>
+ * method_id : UUID <<PK,FK>>
+ --
+ * relationship : TEXT
+}
+entity "INTERVENTION_APPLICATION (extended)" as IA #E9D5FF {
+ * application_id : UUID <<PK>>
+ --
+ * run_id : UUID <<FK>>
+ * intervention_id : UUID <<FK>>
+ run_method_usage_id : UUID <<FK nullable>>
+}
+entity "PAPER_EXPERIMENT" as PE #F1F5F9 {
+ * paper_experiment_id : UUID <<PK>>
+}
+entity "EVALUATION" as Eval #FEF3C7 {
+ * evaluation_id : UUID <<PK>>
+}
+entity "REPRODUCTION_ATTEMPT" as Repro #FEE2E2 {
+ * reproduction_id : UUID <<PK>>
+ --
+ * paper_experiment_id : UUID <<FK>>
+ * run_id : UUID <<FK>>
+ evaluation_id : UUID <<FK nullable>>
+ * fidelity_grade : TEXT
+ * outcome : TEXT
+ protocol_deviation_json : JSONB
+}
+Method |o--o{ Method : parent
+Method ||--o{ MV
+MV ||--o{ MI
+Impl ||--o{ MI
+Arm ||--o{ PAM
+MV ||--o{ PAM
+Run ||--o{ MU
+MV ||--o{ MU
+Impl ||--o{ MU
+Intervention ||--o{ IM
+Method ||--o{ IM
+Run ||--o{ IA
+Intervention ||--o{ IA
+MU |o--o{ IA
+PE ||--o{ Repro
+Run ||--o{ Repro
+Eval |o--o{ Repro
+note bottom of MU
+Enforce a matching METHOD_IMPLEMENTATION pair.
+Used code/config is fixed at dispatch / run finalization.
+end note
+@enduml
+
+@startuml MODEL_05_Synthesis_and_Evidence
+!theme plain
+title model-5. Evidence synthesis, context sensitivity, conflicting claims
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "CLAIM" as Claim #DBEAFE {
+ * claim_id : UUID <<PK>>
+}
+entity "EVIDENCE" as Evidence #DBEAFE {
+ * evidence_id : UUID <<PK>>
+}
+entity "CLAIM_EVIDENCE" as CE #DBEAFE {
+ * claim_id : UUID <<PK,FK>>
+ * evidence_id : UUID <<PK,FK>>
+ --
+ * stance : TEXT
+}
+entity "APPLICABILITY_PROFILE" as AP #CCFBF1 {
+ * profile_id : UUID <<PK>>
+}
+entity "EVIDENCE_SYNTHESIS" as S #FEF3C7 {
+ * synthesis_id : UUID <<PK>>
+ --
+ * target_claim_id : TEXT <<FK>>
+ scope_profile_id : UUID <<FK nullable>>
+ * objective : TEXT
+}
+entity "SYNTHESIS_REVISION" as SR #FEF3C7 {
+ * synthesis_revision_id : UUID <<PK>>
+ --
+ * synthesis_id : UUID <<FK>>
+ * revision_no : INT
+ * conclusion : TEXT
+ * approved_review_id : UUID <<FK>>
+ * frozen_at : TIMESTAMPTZ
+}
+entity "SYNTHESIS_INPUT" as SI #FEF3C7 {
+ * synthesis_revision_id : UUID <<PK,FK>>
+ * evidence_id : UUID <<PK,FK>>
+ --
+ * inclusion_status : TEXT
+ quality_assessment : TEXT
+ independence_group : TEXT
+}
+entity "CLAIM_CONFLICT" as Conflict #FEE2E2 {
+ * conflict_id : UUID <<PK>>
+ --
+ * claim_a_id : TEXT <<FK>>
+ * claim_b_id : TEXT <<FK>>
+ * status : TEXT
+ explanation : TEXT
+}
+entity "CONDITION_DIMENSION" as Dim #CCFBF1 {
+ * dimension_id : UUID <<PK>>
+}
+entity "CONFLICT_CONTEXT" as CC #FEE2E2 {
+ * conflict_id : UUID <<PK,FK>>
+ * dimension_id : UUID <<PK,FK>>
+ --
+ value_a_json : JSONB
+ value_b_json : JSONB
+ notes : TEXT
+}
+entity "EVIDENCE_QUALITY_ASSESSMENT" as QA #DBEAFE {
+ * assessment_id : UUID <<PK>>
+ --
+ * evidence_id : UUID <<FK>>
+ * reviewer_id : TEXT
+ * study_design : TEXT
+ * reviewed_at : TIMESTAMPTZ
+}
+Claim ||--o{ CE
+Evidence ||--o{ CE
+Claim ||--o{ S
+AP |o--o{ S
+S ||--o{ SR
+SR ||--o{ SI
+Evidence ||--o{ SI
+Evidence ||--o{ QA
+Claim ||--o{ Conflict : claim_a
+Claim ||--o{ Conflict : claim_b
+Conflict ||--o{ CC
+Dim ||--o{ CC
+note bottom of SI
+Do not count dependent results as independent evidence.
+Record study / dataset / population overlap.
+end note
+@enduml
+
+@startuml MODEL_06_Questions_Search_and_Planning
+!theme plain
+title model-6. Research questions, evidence gaps, search coverage, next experiment
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "RESEARCH_QUESTION" as Q #DBEAFE {
+ * question_id : UUID <<PK>>
+ --
+ * question_text : TEXT
+ scope_profile_id : UUID <<FK nullable>>
+ * status : TEXT
+}
+entity "KNOWLEDGE_GAP" as Gap #DBEAFE {
+ * gap_id : UUID <<PK>>
+ --
+ * question_id : UUID <<FK>>
+ * gap_type : TEXT
+ * description : TEXT
+ * status : TEXT
+}
+entity "CONCEPT" as Concept #F1F5F9 {
+ * concept_id : UUID <<PK>>
+}
+entity "QUESTION_CONCEPT" as QC #F1F5F9 {
+ * question_id : UUID <<PK,FK>>
+ * concept_id : UUID <<PK,FK>>
+ --
+ * role : TEXT
+}
+entity "HYPOTHESIS" as H #F1F5F9 {
+ * hypothesis_id : UUID <<PK>>
+}
+entity "QUESTION_HYPOTHESIS" as QH #F1F5F9 {
+ * question_id : UUID <<PK,FK>>
+ * hypothesis_id : UUID <<PK,FK>>
+}
+entity "EXPERIMENT_PROPOSAL" as Proposal #CCFBF1 {
+ * proposal_id : UUID <<PK>>
+ --
+ question_id : UUID <<FK nullable>>
+ target_gap_id : UUID <<FK nullable>>
+ hypothesis_id : UUID <<FK nullable>>
+ plan_id : UUID <<FK nullable>>
+ * proposed_change : TEXT
+ * status : TEXT
+}
+entity "RESEARCH_DECISION" as Decision #CCFBF1 {
+ * decision_id : UUID <<PK>>
+ --
+ * proposal_id : UUID <<FK>>
+ * decision : TEXT
+ * rationale : TEXT
+}
+entity "LITERATURE_SEARCH" as Search #FEF3C7 {
+ * search_id : UUID <<PK>>
+ --
+ * source : TEXT
+ * query : TEXT
+ * executed_at : TIMESTAMPTZ
+}
+entity "SEARCH_HIT" as Hit #FEF3C7 {
+ * hit_id : UUID <<PK>>
+ --
+ * search_id : UUID <<FK>>
+ publication_id : UUID <<FK nullable>>
+ * external_record_id : TEXT
+}
+entity "SCREENING_DECISION" as Screening #FEF3C7 {
+ * screening_id : UUID <<PK>>
+ --
+ * hit_id : UUID <<FK>>
+ * decision : TEXT
+ * reason_code : TEXT
+}
+entity "COVERAGE_ASSESSMENT" as Cov #FEF3C7 {
+ * coverage_id : UUID <<PK>>
+ --
+ search_id : UUID <<FK nullable>>
+ * assessment_basis : TEXT
+ * status : TEXT
+}
+entity "PUBLICATION" as Pub #F1F5F9 {
+ * publication_id : UUID <<PK>>
+}
+entity "EXPERIMENT_PLAN" as Plan #F1F5F9 {
+ * plan_id : UUID <<PK>>
+}
+Q ||--o{ Gap
+Q ||--o{ QC
+Concept ||--o{ QC
+Q ||--o{ QH
+H ||--o{ QH
+Q |o--o{ Proposal
+Gap |o--o{ Proposal
+H |o--o{ Proposal
+Plan |o--o{ Proposal
+Proposal ||--o{ Decision
+Search ||--o{ Hit
+Pub |o--o{ Hit
+Hit ||--o{ Screening
+Search |o--o{ Cov
+note bottom of Cov
+Coverage is a statement about searched sources,
+queries and windows, never proof of completeness.
+end note
+@enduml
+
+@startuml MODEL_07_Review_and_Dispatch
+!theme plain
+title model-7. LLM proposals, human review, controlled GPU dispatch
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+entity "EXTRACTION_RUN" as Extract #F1F5F9 {
+ * extraction_run_id : UUID <<PK>>
+}
+entity "EXTRACTION_CANDIDATE" as Candidate #F1F5F9 {
+ * candidate_id : UUID <<PK>>
+}
+entity "KNOWLEDGE_PROPOSAL" as KP #DBEAFE {
+ * knowledge_proposal_id : UUID <<PK>>
+ --
+ extraction_candidate_id : UUID <<FK nullable>>
+ extraction_run_id : UUID <<FK nullable>>
+ * target_type : TEXT
+ target_id : TEXT
+ * payload_json : JSONB
+ * payload_hash : CHAR(64)
+ * status : TEXT
+}
+entity "REVIEW_DECISION" as Review #DBEAFE {
+ * review_id : UUID <<PK>>
+ --
+ * knowledge_proposal_id : UUID <<FK>>
+ * reviewer_id : TEXT
+ * decision : TEXT
+ * proposal_hash : CHAR(64)
+ * decided_at : TIMESTAMPTZ
+}
+entity "AUDIT_EVENT" as Audit #FEE2E2 {
+ * event_id : UUID <<PK>>
+ --
+ * actor_kind : TEXT
+ * action : TEXT
+ * target_type : TEXT
+ * occurred_at : TIMESTAMPTZ
+}
+entity "EXPERIMENT_PROPOSAL" as EP #CCFBF1 {
+ * proposal_id : UUID <<PK>>
+}
+entity "EXPERIMENT_PLAN" as Plan #CCFBF1 {
+ * plan_id : UUID <<PK>>
+}
+entity "EXECUTION_REQUEST" as Req #CCFBF1 {
+ * execution_request_id : UUID <<PK>>
+ --
+ proposal_id : UUID <<FK nullable>>
+ experiment_plan_id : UUID <<FK nullable>>
+ * input_hash : CHAR(64)
+ * plan_hash : CHAR(64)
+ * implementation_digest : CHAR(64)
+ * config_hash : CHAR(64)
+ * resource_budget_json : JSONB
+ * request_hash : CHAR(64)
+ * status : TEXT
+}
+entity "EXECUTION_APPROVAL" as EA #CCFBF1 {
+ * approval_id : UUID <<PK>>
+ --
+ * execution_request_id : UUID <<FK>>
+ * approver_id : TEXT
+ * decision : TEXT
+ * request_hash : CHAR(64)
+ * approved_budget_json : JSONB
+ expires_at : TIMESTAMPTZ
+ * decided_at : TIMESTAMPTZ
+}
+entity "EXECUTION_DISPATCH" as ED #CCFBF1 {
+ * dispatch_id : UUID <<PK>>
+ --
+ * execution_request_id : UUID <<FK>>
+ * approval_id : UUID <<FK>>
+ * request_hash : CHAR(64)
+ external_job_id : TEXT
+ * dispatched_at : TIMESTAMPTZ
+}
+Extract |o--o{ KP
+Candidate |o--o{ KP
+KP ||--o{ Review
+Review }o--o{ Audit : produces
+EP |o--o{ Req
+Plan |o--o{ Req
+Req ||--o{ EA
+Req ||--o{ ED
+EA ||--o{ ED
+ED }o--o{ Audit : produces
+note bottom of ED
+Approval must bind exactly plan/input/implementation/config/budget hash.
+Approval must authorize the request hash and cannot expire/be denied.
+Store the authorization decision and dispatch in an auditable transaction.
+end note
+@enduml
+
+
+@startuml MODEL_08_Core_Ontology_ER
+!theme plain
+title model-8. Core ontology, conditioned claims and evidence
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+entity "CONCEPT" as Concept #DBEAFE {
+ * concept_id : UUID <<PK>>
+ --
+ canonical_name : TEXT
+ kind_code : TEXT <<FK>>
+}
+entity "CONCEPT_KIND" as Kind #DBEAFE {
+ * kind_code : TEXT <<PK>>
+ --
+ kind_name : TEXT
+}
+entity "CONCEPT_ALIAS" as Alias #DBEAFE {
+ * concept_id : UUID <<PK,FK>>
+ * alias_text : TEXT <<PK>>
+ * language : TEXT <<PK>>
+}
+entity "REQUIREMENT" as Requirement #CCFBF1 {
+ * requirement_id : UUID <<PK>>
+ --
+ threshold_policy : JSONB
+}
+entity "CONTEXT" as Context #CCFBF1 {
+ * context_id : UUID <<PK>>
+ --
+ condition_spec : JSONB
+}
+entity "PROBLEM" as Problem #CCFBF1 {
+ * problem_id : UUID <<PK>>
+ --
+ * requirement_id : UUID <<FK>>
+ * context_id : UUID <<FK>>
+ observed_gap : TEXT
+}
+entity "PROBLEM_CONCEPT" as PC #CCFBF1 {
+ * problem_id : UUID <<PK,FK>>
+ * concept_id : UUID <<PK,FK>>
+ --
+ role_in_problem : TEXT
+}
+entity "CLAIM" as Claim #FFEDD5 {
+ * claim_id : UUID <<PK>>
+ --
+ claim_kind : TEXT
+ epistemic_status : TEXT
+ condition_text : TEXT
+}
+entity "RELATION_TYPE" as Predicate #FFEDD5 {
+ * predicate_code : TEXT <<PK>>
+ --
+ * subject_types : JSONB
+ * object_types : JSONB
+}
+entity "CONCEPT_RELATION" as CR #FFEDD5 {
+ * claim_id : UUID <<PK,FK>>
+ --
+ * subject_concept_id : UUID <<FK>>
+ * object_concept_id : UUID <<FK>>
+ * predicate_code : TEXT <<FK>>
+}
+entity "INTERVENTION" as Intervention #F3E8FF {
+ * intervention_id : UUID <<PK>>
+}
+entity "INTERVENTION_EFFECT" as IE #FFEDD5 {
+ * claim_id : UUID <<PK,FK>>
+ --
+ * intervention_id : UUID <<FK>>
+ * concept_id : UUID <<FK>>
+ * predicate_code : TEXT <<FK>>
+}
+entity "METHOD" as Method #F3E8FF {
+ * method_id : UUID <<PK>>
+}
+entity "METHOD_EFFECT" as ME #FFEDD5 {
+ * claim_id : UUID <<PK,FK>>
+ --
+ * method_id : UUID <<FK>>
+ * concept_id : UUID <<FK>>
+ * predicate_code : TEXT <<FK>>
+}
+entity "METRIC" as Metric #F3E8FF {
+ * metric_id : UUID <<PK>>
+}
+entity "METRIC_LINK" as ML #FFEDD5 {
+ * claim_id : UUID <<PK,FK>>
+ --
+ * concept_id : UUID <<FK>>
+ * metric_id : UUID <<FK>>
+ * predicate_code : TEXT <<FK>>
+}
+entity "EVIDENCE" as Evidence #FEE2E2 {
+ * evidence_id : UUID <<PK>>
+ --
+ evidence_kind : TEXT
+}
+entity "CLAIM_EVIDENCE" as CE #FEE2E2 {
+ * claim_id : UUID <<PK,FK>>
+ * evidence_id : UUID <<PK,FK>>
+ --
+ stance : TEXT
+}
+entity "PROBLEM_EVIDENCE" as PE #FEE2E2 {
+ * problem_id : UUID <<PK,FK>>
+ * evidence_id : UUID <<PK,FK>>
+}
+entity "CONCEPT_EVIDENCE" as CoE #FEE2E2 {
+ * concept_id : UUID <<PK,FK>>
+ * evidence_id : UUID <<PK,FK>>
+}
+Kind ||--o{ Concept
+Concept ||--o{ Alias
+Requirement ||--o{ Problem
+Context ||--o{ Problem
+Problem ||--o{ PC
+Concept ||--o{ PC
+Claim ||--o| CR
+Claim ||--o| IE
+Claim ||--o| ME
+Claim ||--o| ML
+Concept ||--o{ CR : subject
+Concept ||--o{ CR : object
+Predicate ||--o{ CR
+Intervention ||--o{ IE
+Concept ||--o{ IE
+Predicate ||--o{ IE
+Method ||--o{ ME
+Concept ||--o{ ME
+Predicate ||--o{ ME
+Metric ||--o{ ML
+Concept ||--o{ ML
+Predicate ||--o{ ML
+Claim ||--o{ CE
+Evidence ||--o{ CE
+Problem ||--o{ PE
+Evidence ||--o{ PE
+Concept ||--o{ CoE
+Evidence ||--o{ CoE
+note bottom of Claim
+Exactly one typed child: CONCEPT_RELATION, INTERVENTION_EFFECT,
+METHOD_EFFECT or METRIC_LINK (per published Claim).
+Claim-Evidence stances are reviewable, not absolute truth.
+For finalized evidence: exactly one origin (literature or experiment).
+end note
+@enduml
+
+@startuml MODEL_09_Experiment_Core
+!theme plain
+title model-9. Studies, versions, runs, interventions and reproducible provenance
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+entity "STUDY" as Study #DBEAFE {
+ * study_id : UUID <<PK>>
+ --
+ objective : TEXT
+}
+entity "STUDY_PROBLEM" as SP #DBEAFE {
+ * study_id : UUID <<PK,FK>>
+ * problem_id : UUID <<PK,FK>>
+}
+entity "PROBLEM" as Problem #DBEAFE {
+ * problem_id : UUID <<PK>>
+}
+entity "HYPOTHESIS" as Hypothesis #DBEAFE {
+ * hypothesis_id : UUID <<PK>>
+ --
+ * study_id : UUID <<FK>>
+ decision_rule : TEXT
+}
+entity "EXPERIMENT_PLAN" as Plan #CCFBF1 {
+ * plan_id : UUID <<PK>>
+ --
+ * study_id : UUID <<FK>>
+ hypothesis_id : UUID <<FK,nullable>>
+ protocol_hash : TEXT
+ frozen_at : TIMESTAMPTZ
+}
+entity "ENVIRONMENT_SNAPSHOT" as Env #E9D5FF {
+ * environment_id : UUID <<PK>>
+ --
+ runtime_spec_hash : TEXT
+ container_digest : TEXT
+}
+entity "EXPERIMENT_RUN" as Run #CCFBF1 {
+ * run_id : UUID <<PK>>
+ --
+ * plan_id : UUID <<FK>>
+ * environment_id : UUID <<FK>>
+ config_hash : TEXT
+ external_tracking_key : TEXT
+}
+entity "DATASET" as Dataset #E0F2FE {
+ * dataset_id : UUID <<PK>>
+}
+entity "DATASET_VERSION" as DV #E0F2FE {
+ * dataset_version_id : UUID <<PK>>
+ --
+ * dataset_id : UUID <<FK>>
+ * content_hash : TEXT
+ manifest_artifact_id : UUID <<FK>>
+}
+entity "DATASET_DERIVATION" as DD #E0F2FE {
+ * derivation_id : UUID <<PK>>
+ --
+ * source_dataset_version_id : UUID <<FK>>
+ * derived_dataset_version_id : UUID <<FK>>
+ transform_run_id : UUID <<FK,nullable>>
+}
+entity "DATA_SPLIT" as DS #E0F2FE {
+ * split_id : UUID <<PK>>
+ --
+ * dataset_version_id : UUID <<FK>>
+ * membership_hash : TEXT
+}
+entity "RUN_DATA_USAGE" as RDU #CCFBF1 {
+ * run_id : UUID <<PK,FK>>
+ * split_id : UUID <<PK,FK>>
+ * usage_role : TEXT <<PK>>
+}
+entity "ARTIFACT" as Artifact #F1F5F9 {
+ * artifact_id : UUID <<PK>>
+ --
+ sha256 : TEXT
+ storage_uri : TEXT
+}
+entity "MODEL_VERSION" as MV #CCFBF1 {
+ * model_version_id : UUID <<PK>>
+ --
+ produced_by_run_id : UUID <<FK,nullable>>
+ weights_artifact_id : UUID <<FK>>
+}
+entity "INTERVENTION" as Intervention #E9D5FF {
+ * intervention_id : UUID <<PK>>
+}
+entity "INTERVENTION_APPLICATION" as IA #E9D5FF {
+ * application_id : UUID <<PK>>
+ --
+ * run_id : UUID <<FK>>
+ * intervention_id : UUID <<FK>>
+ baseline_run_id : UUID <<FK,nullable>>
+}
+Study ||--o{ SP
+Problem ||--o{ SP
+Study ||--o{ Hypothesis
+Study ||--o{ Plan
+Hypothesis |o--o{ Plan
+Plan ||--o{ Run
+Env ||--o{ Run
+Dataset ||--o{ DV
+DV ||--o{ DD : source
+DV ||--o{ DD : derived
+Run |o--o{ DD : transforms
+DV ||--o{ DS
+Run ||--o{ RDU
+DS ||--o{ RDU
+Artifact ||--o{ DV
+Run |o--o{ MV : produces
+Artifact ||--o{ MV
+Run ||--o{ IA
+Intervention ||--o{ IA
+Run |o--o{ IA : baseline
+@enduml
+
+@startuml MODEL_10_Data_Model_and_Evaluation
+!theme plain
+title model-10. Evaluation, slices, metrics, comparison and evidence bridge
+left to right direction
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+entity "EXPERIMENT_RUN" as Run #CCFBF1 {
+ * run_id : UUID <<PK>>
+}
+entity "MODEL_VERSION" as MV #CCFBF1 {
+ * model_version_id : UUID <<PK>>
+}
+entity "DATA_SPLIT" as DS #E0F2FE {
+ * split_id : UUID <<PK>>
+}
+entity "EVALUATION_PROTOCOL" as Protocol #DBEAFE {
+ * protocol_id : UUID <<PK>>
+ --
+ protocol_hash : TEXT
+}
+entity "EVALUATION" as Eval #CCFBF1 {
+ * evaluation_id : UUID <<PK>>
+ --
+ * run_id : UUID <<FK>>
+ * model_version_id : UUID <<FK>>
+ * split_id : UUID <<FK>>
+ * protocol_id : UUID <<FK>>
+ context_id : UUID <<FK,nullable>>
+}
+entity "EVALUATION_SLICE" as Slice #CCFBF1 {
+ * slice_id : UUID <<PK>>
+ --
+ * evaluation_id : UUID <<FK>>
+ filter_spec : JSONB
+}
+entity "METRIC" as Metric #E9D5FF {
+ * metric_id : UUID <<PK>>
+}
+entity "METRIC_SPEC_VERSION" as MS #E9D5FF {
+ * metric_spec_id : UUID <<PK>>
+ --
+ * metric_id : UUID <<FK>>
+ direction : TEXT
+ implementation_hash : TEXT
+}
+entity "METRIC_RESULT" as MR #CCFBF1 {
+ * metric_result_id : UUID <<PK>>
+ --
+ * slice_id : UUID <<FK>>
+ * metric_spec_id : UUID <<FK>>
+ numeric_value : DECIMAL, nullable
+ result_status : TEXT
+}
+entity "PREDICTION_SET" as PS #CCFBF1 {
+ * prediction_set_id : UUID <<PK>>
+ --
+ * evaluation_id : UUID <<FK>>
+ * artifact_id : UUID <<FK>>
+}
+entity "ARTIFACT" as Artifact #F1F5F9 {
+ * artifact_id : UUID <<PK>>
+}
+entity "STUDY" as Study #DBEAFE {
+ * study_id : UUID <<PK>>
+}
+entity "HYPOTHESIS" as H #DBEAFE {
+ * hypothesis_id : UUID <<PK>>
+}
+entity "EXPERIMENT_COMPARISON" as EC #FFEDD5 {
+ * comparison_id : UUID <<PK>>
+ --
+ * study_id : UUID <<FK>>
+ * baseline_evaluation_id : UUID <<FK>>
+ * candidate_evaluation_id : UUID <<FK>>
+}
+entity "COMPARISON_METRIC_DELTA" as Delta #FFEDD5 {
+ * delta_id : UUID <<PK>>
+ --
+ * comparison_id : UUID <<FK>>
+ * baseline_metric_result_id : UUID <<FK>>
+ * candidate_metric_result_id : UUID <<FK>>
+}
+entity "ANALYSIS" as Analysis #DBEAFE {
+ * analysis_id : UUID <<PK>>
+ --
+ * study_id : UUID <<FK>>
+ * run_id : UUID <<FK>>
+}
+entity "ANALYSIS_FINDING" as Finding #DBEAFE {
+ * finding_id : UUID <<PK>>
+ --
+ * analysis_id : UUID <<FK>>
+ concept_id : UUID <<FK,nullable>>
+}
+entity "OBSERVATION" as Obs #F1F5F9 {
+ * observation_id : UUID <<PK>>
+ --
+ * context_id : UUID <<FK>>
+}
+entity "HYPOTHESIS_ASSESSMENT" as HA #FFEDD5 {
+ * hypothesis_assessment_id : UUID <<PK>>
+ --
+ * hypothesis_id : UUID <<FK>>
+ comparison_id : UUID <<FK,nullable>>
+ analysis_id : UUID <<FK,nullable>>
+}
+entity "PROBLEM_ASSESSMENT" as PA #FFEDD5 {
+ * problem_assessment_id : UUID <<PK>>
+ --
+ * problem_id : UUID <<FK>>
+ * metric_result_id : UUID <<FK>>
+}
+entity "CLAIM_APPLICABILITY" as CA #FFEDD5 {
+ * claim_applicability_id : UUID <<PK>>
+ --
+ * problem_id : UUID <<FK>>
+ * claim_id : UUID <<FK>>
+}
+entity "EXPERIMENT_EVIDENCE" as EE #FFEDD5 {
+ * evidence_id : UUID <<PK,FK>>
+ --
+ evaluation_id : UUID <<FK,nullable>>
+ comparison_id : UUID <<FK,nullable>>
+ analysis_id : UUID <<FK,nullable>>
+ hypothesis_assessment_id : UUID <<FK,nullable>>
+}
+entity "EVIDENCE" as Evidence #F1F5F9 {
+ * evidence_id : UUID <<PK>>
+}
+entity "PROBLEM" as Problem #F1F5F9 {
+ * problem_id : UUID <<PK>>
+}
+entity "CLAIM" as Claim #F1F5F9 {
+ * claim_id : UUID <<PK>>
+}
+Run ||--o{ Eval
+MV ||--o{ Eval
+DS ||--o{ Eval
+Protocol ||--o{ Eval
+Eval ||--o{ Slice
+Slice ||--o{ MR
+Metric ||--o{ MS
+MS ||--o{ MR
+Eval ||--o{ PS
+Artifact ||--o{ PS
+Study ||--o{ EC
+Eval ||--o{ EC : baseline
+Eval ||--o{ EC : candidate
+EC ||--o{ Delta
+MR ||--o{ Delta : baseline
+MR ||--o{ Delta : candidate
+Study ||--o{ Analysis
+Run ||--o{ Analysis
+Analysis ||--o{ Finding
+H ||--o{ HA
+EC |o--o{ HA
+Analysis |o--o{ HA
+Problem ||--o{ PA
+MR ||--o{ PA
+Problem ||--o{ CA
+Claim ||--o{ CA
+Evidence ||--o| EE
+Eval |o--o{ EE
+EC |o--o{ EE
+Analysis |o--o{ EE
+HA |o--o{ EE
+note bottom of EE
+Exactly one of the four evidence targets may be set.
+The FK constraint alone is insufficient: add CHECK.
+end note
+@enduml

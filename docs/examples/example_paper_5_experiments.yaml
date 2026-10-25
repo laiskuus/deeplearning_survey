@@ -1,0 +1,68 @@
+# 全て架空の文献・測定値。実在論文の報告値ではありません。
+# 目的：1論文・5実験・3改善・2非改善を1論文の評価に潰さず記録する。
+schema_version: 'example-1'
+publication:
+  publication_id: 'pub-demo-001'
+  title: 'DEMO ONLY: Brightness Augmentation under Distribution Shift'
+  identifiers: {doi: null, arxiv_id: null}
+  is_fictional: true
+  document_version:
+    id: 'doc-demo-v1'
+    version_label: 'fictional-v1'
+    source_url: null
+assertions:
+  - assertion_id: 'a-demo-001'
+    source_anchor: 'Discussion, paragraph 2'
+    text: 'The method helps in some lighting-shift settings but not all settings.'
+    status: 'candidate'
+method:
+  method_id: 'method-demo'
+  name: 'Brightness augmentation (illustrative)'
+  method_version: 'method-demo-v1'
+  implementation_version: null  # 論文記述だけ。コード版は未登録。
+measurements:
+  metric: 'defect_recall'
+  metric_direction: 'higher_is_better'
+  comparison_protocol: 'Illustrative aligned-label / same split within each experiment'
+  experiments:
+    - experiment_id: 'pe-001'
+      context: {shift_type: 'lighting', defect: 'scratch', image_resolution: 'high'}
+      excerpt_anchor: 'Table 1, row 1'
+      arms: {baseline: 0.90, candidate: 0.94}
+      delta: 0.04
+      direction: 'point_estimate_improved'
+      significance: 'unknown'
+    - experiment_id: 'pe-002'
+      context: {shift_type: 'lighting', defect: 'stain', image_resolution: 'high'}
+      excerpt_anchor: 'Table 1, row 2'
+      arms: {baseline: 0.88, candidate: 0.91}
+      delta: 0.03
+      direction: 'point_estimate_improved'
+      significance: 'unknown'
+    - experiment_id: 'pe-003'
+      context: {shift_type: 'lighting', defect: 'peel', image_resolution: 'high'}
+      excerpt_anchor: 'Table 1, row 3'
+      arms: {baseline: 0.85, candidate: 0.87}
+      delta: 0.02
+      direction: 'point_estimate_improved'
+      significance: 'unknown'
+    - experiment_id: 'pe-004'
+      context: {shift_type: 'lighting', defect: 'crack', image_resolution: 'low'}
+      excerpt_anchor: 'Table 1, row 4'
+      arms: {baseline: 0.79, candidate: 0.79}
+      delta: 0.00
+      direction: 'no_point_estimate_change'
+      significance: 'unknown'
+    - experiment_id: 'pe-005'
+      context: {shift_type: 'lighting', defect: 'chip', image_resolution: 'low'}
+      excerpt_anchor: 'Table 1, row 5'
+      arms: {baseline: 0.86, candidate: 0.84}
+      delta: -0.02
+      direction: 'point_estimate_worsened'
+      significance: 'unknown'
+notes:
+  - '3 positive point-estimate differences, 1 zero, 1 negative; none is statistically established.'
+  - 'Metric calculation protocol, sample counts and confidence intervals are unspecified.'
+  - 'Do not convert five differences into one universal claim about method effectiveness.'
+  - 'Each experiment has its own baseline and candidate PAPER_ARM, and per-arm PAPER_RESULT.'
+  - 'Human review is required before linking SOURCE_ASSERTION to canonical CLAIM.'
