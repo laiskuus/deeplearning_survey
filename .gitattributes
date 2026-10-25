@@ -1,0 +1,18 @@
+# Normalize line endings: store & check out with LF everywhere (cross-platform safe)
+* text=auto eol=lf
+
+# Text source files
+*.md   text eol=lf
+*.py   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.puml text eol=lf
+
+# Never treat these as text (no EOL conversion)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
